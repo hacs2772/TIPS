@@ -260,10 +260,15 @@ List<Map<String, Object>> list = sqlSession.getMapper(TemplateDao.class).templat
 ⚠⚠ 위드 리쿼시브 쿼리(구문을 통해 쿼리가 반복되며, 반복된 결과를 부모쿼리영역에서 from절로 가져와 사용하는 구조이다.)
 
 WITH RECURSIVE recursive_name(column1, ...) AS (
+
                              SELECT(column1, ...) ~~                                                      // 처음 호출하는 쿼리(필수)
+			     
                              UNION [ALL]
+			     
                              ~~SELECT(column1, ...) FROM recursive_name [WHERE]    // 반복쿼리(재귀쿼리)
+			     
 )
+
 SELECT * FROM recursive_name       // 부모쿼리
 
 
