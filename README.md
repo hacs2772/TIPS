@@ -1,5 +1,5 @@
 # 각종 TIPS
-# #Eclipse #java #spring #postgreSQL #MVC #XML #DAO #Controller #Service #View 
+# #Eclipse #java #spring #postgreSQL #Hive #Hadoop #ES(Elasticsearch) #MVC #XML #DAO #Controller #Service #View 
 
 ———————————읽기 전에——————————————
 
@@ -221,17 +221,17 @@ listUtils.js    855getTitle과  885getKey를 받아서 excelDownloadCallServiceF
 view에서 먼저 체크된 것들을 각각 스트링으로 받게되는데
 이것들은 서비스에 가서도 고대로 스트링으로 박히게 된다.
 Map<String, Object> paramMap = p.getRequestParamMap(); 이렇게 선언했기때문에
-ex)['nds1', 'drmoon', 'lbk', 'junghk28', 'chh1984']
+ex)['hacs1', 'hhacs', 'hhhcs', 'hacss1']'hacs1', 'hhacs', 'hhhcs', 'hacss1'
 그렇기에 서비스에서 다시 가공해줘야한다.
 List<String> ids_list = p.getRequestObjectMapper("ids", List.class);
-ex)[nds1, drmoon, lbk, junghk28, chh1984]
+ex)['hacs1', 'hhacs', 'hhhcs', 'hacss1']
 해석 : 리스트스트링으로 만들어줄것이다 ids_list를 = parameterObject인 p에서 받아온 키값이 "ids"인 값을 getrequest를 이용하여 받아와서 List.class형식으로 저장
 그러면 쭉 스트링이였던 그 값들은 하나하나 분리된 리스트 스트링으로 바뀌게 된다.
 그렇지만 이대로 쿼리문에 들어가면 오류가 나기에 foreach를 사용하여 배열 수 만큼 for문을 돌려 하나하나 배열값들을 넣어주는 쿼리문을 만들어야한다. 
 <foreach collection="ids_list" item="ids" open="and a.user_id IN (" separator="," close=")"> #{ids} </foreach> 이렇게 해주면 된다.
 List<String>컬렉션 을 넣어주면 되고 아이템은 맘대로 넣어주는 변수명이다 하지만 되도록이면 #{x}값으로 넣어주도록 하자 헷갈리기도 하고 결국 그게그거니까
- ids=["nds1","drmoon","thahn","still88","lbk","junghk28","chh1984"]  -->>
- ids_list=[nds1, drmoon, thahn, still88, lbk, junghk28, chh1984]
+ ids=["hacs1", "hhacs", "hhhcs", "hacss1"]  -->>
+ ids_list=[hacs1, hhacs, hhhcs, hacss1]
 뭐가달라졌는지 보이는가? 스트링이 리스트로 바뀐것이다!
 
 
@@ -265,6 +265,14 @@ WITH RECURSIVE recursive_name(column1, ...) AS (
                              ~~SELECT(column1, ...) FROM recursive_name [WHERE]    // 반복쿼리(재귀쿼리)
 )
 SELECT * FROM recursive_name       // 부모쿼리
+
+
+따라서...
+
+WHIT RECURSIVE 쿼리를이용하여 데이터의 깊이를 알 수 있다.
+결국 배열로 정리되는데 배열의 length를 조회하면 거기의 깊이를 알 수 있다.
+고로 길이가 1이면 최상위 트리일것이고 2라면 그 바로 하위트리 3이면 그 하위트리에 하위트리 인것이다!
+고로 저 쿼리를 돌려 깊이를 알아내고 표현해 줄 수 있다.
 
 ------------------------
 
