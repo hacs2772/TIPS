@@ -320,28 +320,58 @@ disabled는 선택, 클릭, 입력 등 포커스를 받지 못하게 하는 기�
 
 쿼리는 너무 쉽다 다만 결과값을 보여줄 필요가 없읜 resultType설정을 하지 않아도 된다. 파라미터타입은 HashMap으로 하였다. 키벨류가 있으니(원리는 자세히는 모름)
 ```
-<select id = "testUpdate" parameterType = "HashMap">
-UPDATE 	테이블 이름
-SET	업데이트 시키고싶은 속성명 = #{input받은 값}
+<select id = "testUpdate1" parameterType = "HashMap">
+UPDATE 	a테이블 이름
+SET	업데이트 시키고싶은 속성명 = #{input받은 값},
+	+a업데이트 시키고 싶은 것
+WHERE	원하는 조건id = #{입력받은 조건(변동 가능)}
+</select>
+
+
+<select id = "testUpdate2" parameterType = "HashMap">
+UPDATE 	b테이블 이름
+SET	업데이트 시키고싶은 속성명 = #{input받은 값},
+	+a업데이트 시키고 싶은 것
+WHERE	원하는 조건id = #{입력받은 조건(변동 가능)}
+</select>
+
+
+<select id = "testUpdate3" parameterType = "HashMap">
+UPDATE 	c테이블 이름
+SET	업데이트 시키고싶은 속성명 = #{input받은 값},
+	+a업데이트 시키고 싶은 것
 WHERE	원하는 조건id = #{입력받은 조건(변동 가능)}
 </select>
 ```
 이렇게 xml에 쿼리를 짜면되고 (간단하게)
+테이블이 3개이니 쿼리문도 3개로 나누었다. (!!! 경험상 쿼리문에서 나눠서 데이터를 뿌려주는 법을 해보았지만 매우 복잡하고 어렵다. 그로 조건문(ex division으로 나누기)같은걸 넣으려면 쿼리문에 보단 서비스에서 조건을 주는게 더 편하고 빠르다.)<br/>
 
 
-Dao에서는
-`public void testUpdate(Map<String, Object> HashMap)`
+Dao에서는 <br/>
+`public void testUpdate1(Map<String, Object> HashMap)`<br/>
+`public void testUpdate2(Map<String, Object> HashMap)`<br/>
+`public void testUpdate3(Map<String, Object> HashMap)`<br/>
 이렇게 만들면 된다. (들어가기만 하면 되니 간단함)
+<br/><br/>
 
-
-Service에서는
+**Service에서는(중요!!!조건문 들어가니)**<br/>
 ```
 Public void TestUpdate(ParameterObject p){
+	String 나누는변수 = p.getRequestString("나누는변수 키값");  // 저 나누는변수 키값은 ajax에서 넣은 data가 들어간다. 고로 알아서 정해줘라..(난 division으로 나눴음)
 	Map<String, Object> param = p.getRequestParamMap();	// 뷰에서 가져온 데이터를 param에 넣는다
-	sqlSession.getMapper(TestDao.class).testUpdate(param);	// 그 param값을 다시 다오로 넘겨준다.
+
+		// 조건문 시작
+		if (나누는변수.equals("input받은 나누는변수1")) {
+			sqlSession.getMapper(TestDao.class).testUpdate1(param); // 그리고 그 param값을 다시 다오로 넘겨준다.
+		}else if (나누는변수.equals("input받은 나누는변수2")) {
+			sqlSession.getMapper(TestDao.class).testUpdate2(param);
+		}else if (나누는변수.equals("input받은 나누는변수3")) {
+			sqlSession.getMapper(TestDao.class).testUpdate3(param);
+		}
 }
 ```
-
+이렇게 서비스에서 조건문을 걸어 나눠주는것이 훨신 편하고 빠르다.(쿼리쪽은 쫌 반복되게 길어지겠지만..)
+<br/>
 
 Controller에서는 
 ```
@@ -356,13 +386,26 @@ Public Map<String, Object> TestUpdate(ParameterObject p) throws Exception{
 	return p.getResultDataMap();
 }
 ```
-이렇게 간단하게만 짜면된다. (거의 복붙)
+역시 컨트롤러답게 뭐 만질것이 없다. 그냥 연결만 해주면 슥슥 되기에 이렇게 간단하게만 짜면된다. (거의 복붙)<br/><br/>
 
-뷰에선 data에서 input받은 값과 입력받은 조건id같은것만 넣으면 업데이트 쿼리만들기가 끝나게 된다.
+뷰에선 서비스에서 만들었던 나누는변수 조건을 걸어줘야하기에 ajax전에 미리 조건문을 만들어 줘야한다.
+```
+		if (나누는변수 == "input받은 나누는변수1") {
+			var 업데이트 하고 싶은 것1 = $("#xxx111").val();
+    			var 업데이트 하고 싶은 것2 = xxx1.getValue();
+		}else if (나누는변수 == "input받은 나누는변수2") {
+			var 업데이트 하고 싶은 것1 = $("#xxx222").val();
+			var 업데이트 하고 싶은 것2 = xxx2.getValue();
+		}else if (나누는변수 == "input받은 나누는변수3") {
+			var 업데이트 하고 싶은 것1 = $("#xxx333").val();
+			var 업데이트 하고 싶은 것2 = xxx3.getValue();
+		}
+```
+data에서 input받은 값과 입력받은 조건id같은것만 넣으면 업데이트 쿼리만들기가 끝나게 된다.<br/>
 
 하지만 주의할점은 현재 창에있는 데이터를 업데이트하려고 했었기때문에
 
-html에서 id값을 받아와 현재 창에 input된 값을 가져와 넘겨줘야한다는 점이다.
+html에서 id값을 받아와 현재 창에 input된 값을 가져와 넘겨줘야한다는 점이다. (그래서 `$("#xxx").val();`이거나, `xxx.getValue();` 이거를 이용한 것이다.(현재 창에 입력된 값이니) )
 
 잘못넘겨줬다간 이상한데이터가 업데이트 되는 불상사가 생길 수 있다.
 
