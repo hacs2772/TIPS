@@ -316,4 +316,57 @@ disabled는 선택, 클릭, 입력 등 포커스를 받지 못하게 하는 기�
 주로 아이디나 비밀번호를 표시해줄때 사용하게된다.(수정 못하게)
 
 ------------------------
+⚠⚠ Mybaits를 이용한 UPDATE 쿼리~뷰까지 만들기
+
+쿼리는 너무 쉽다 다만 결과값을 보여줄 필요가 없읜 resultType설정을 하지 않아도 된다. 파라미터타입은 HashMap으로 하였다. 키벨류가 있으니(원리는 자세히는 모름)
+```
+<select id = "testUpdate" parameterType = "HashMap">
+UPDATE 	테이블 이름
+SET	업데이트 시키고싶은 속성명 = #{input받은 값}
+WHERE	원하는 조건id = #{입력받은 조건(변동 가능)}
+</select>
+```
+이렇게 xml에 쿼리를 짜면되고 (간단하게)
+
+
+Dao에서는
+`public void testUpdate(Map<String, Object> HashMap)`
+이렇게 만들면 된다. (들어가기만 하면 되니 간단함)
+
+
+Service에서는
+```
+Public void TestUpdate(ParameterObject p){
+	Map<String, Object> param = p.getRequestParamMap();	// 뷰에서 가져온 데이터를 param에 넣는다
+	sqlSession.getMapper(TestDao.class).testUpdate(param);	// 그 param값을 다시 다오로 넘겨준다.
+}
+```
+
+
+Controller에서는 
+```
+@ResquestMapping("TestUpdate.do")
+@ResponseBody
+Public Map<String, Object> TestUpdate(ParameterObject p) throws Exception{
+	try{
+		testService.TestUdate(p);
+	} catch(Exception e){
+		p.setErrorData(this.getClass().getName(), e, e.getMessage());
+	}
+	return p.getResultDataMap();
+}
+```
+이렇게 간단하게만 짜면된다. (거의 복붙)
+
+뷰에선 data에서 input받은 값과 입력받은 조건id같은것만 넣으면 업데이트 쿼리만들기가 끝나게 된다.
+
+하지만 주의할점은 현재 창에있는 데이터를 업데이트하려고 했었기때문에
+
+html에서 id값을 받아와 현재 창에 input된 값을 가져와 넘겨줘야한다는 점이다.
+
+잘못넘겨줬다간 이상한데이터가 업데이트 되는 불상사가 생길 수 있다.
+
+
+
+------------------------
 
