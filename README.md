@@ -432,12 +432,9 @@ console.log(yyy); // 결과는 "abc_xxxxx_ghi"
 
 매우매우 간단하고 유용하게 사용될 수 있다.
 
-예를들어 html에서 id값이 반복적으로 난무하고
-그 값에 따른 name도 바로바로 찾고싶다면
+예를들어 html에서 id의 id값이 반복적으로 난무하고
+그 값에 따른 name값도 비슷하게 id값이 지정되어 있어서 바로바로 찾고싶다면
 
- `id = "a_id", id = "b_id", id = "c_id", id = "d_id" `
-
- 이걸
  ```
  // 먼저 html에 수많은 id = "a_id", id = "b_id", id = "c_id", id = "d_id" 아이디 들이 반복되어 있고
 
