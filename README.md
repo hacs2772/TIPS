@@ -411,11 +411,13 @@ html에서 id값을 받아와 현재 창에 input된 값을 가져와 넘겨줘�
 ------------------------
 
 ⚠⚠ **#SUBSTITUTE #view #jsp #replace #일정 택스트부분 원하는 값으로 변환**<br/>
-엑셀에서 일정 텍스트를 원하는 값으로 바꾸려면 SUBSTITUTE를 사용한다. ` SUBSTITUTE("abcdefghi","def","xxx") => 'avcxxxghi' `
+엑셀에서 일정 텍스트를 원하는 값으로 바꾸려면 SUBSTITUTE를 사용한다. 
+
+예를들어 ` SUBSTITUTE("abcdefghi","def","xxx") => 'avcxxxghi' `
 
 이러한 유용한 기능을 뷰에선 사용할 수 없을까??
 
-당연히 사용할 수 있다. 바로 replace이다.
+당연히 사용할 수 있다. 바로 `replace`이다.
 
 일단 사용방법은 `변수.replace("바꾸고싶은 값","바꾸려는 값")`
 
