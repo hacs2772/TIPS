@@ -1,5 +1,5 @@
 # 각종 TIPS
-# #Eclipse #java #spring #postgreSQL #Hive #Hadoop #ES(Elasticsearch) #MVC #XML #DAO #Controller #Service #View 
+# #Eclipse #java #spring #postgreSQL #Hive #Hadoop #ES(Elasticsearch) #MVC #XML #DAO #Controller #Service #View #JQuery
 
 ———————————읽기 전에——————————————
 
