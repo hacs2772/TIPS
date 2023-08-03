@@ -101,7 +101,7 @@
 
 
 ------------------------
-⚠⚠ console.log("===>", data); system.out.println("===>" + data);
+⚠⚠ `console.log("===>", data);` `system.out.println("===>" + data);`
 
 콘솔로그를 수시로 찍어보는 습관을 들이자
 그래야지 어디가 잘못되었는지 파악 할 수 있다.(쿼리문에서 콘솔찍는법은 쫌 복잡하다...)
@@ -151,7 +151,7 @@ js 들어가서 보면 알겠지만 위 두개는 우리가만든 콤보박스�
 
 
 ------------------------
-⚠⚠ 서비스 > Map<String, Object> paramMap = p.getRequestParamMap();
+⚠⚠ 서비스 > `Map<String, Object> paramMap = p.getRequestParamMap();`
 
 난 Map<String, Object> paramMap = new HashMap<String, Object>(); 이것만 해줬다 그런데 이건 값을 그냥 선언만 해준것이지 결국엔 빈값만 있게 된다. 
 평소에 값을 받아오는 적은 별로 없다보니 그냥 막막 복사해서 썻지만 input같이 값을 받아올 땐 서비스에서 처리를 잘해줘야한다. 
@@ -170,19 +170,13 @@ js 들어가서 보면 알겠지만 위 두개는 우리가만든 콤보박스�
 5. 값 맵핑(컨트롤 > 서비스 > 다오)
 6. 값 도출 확인
 
-
-------------------------
-⚠⚠ 서비스에서 문제
-
-순서가 문제였다. 
-정확히 어떤기능을 하는지도 모르고 마구자비로 넣었다가 선언도 안한 것들을 넣다보니 오류가 난것이였다.
-고로 어떤기능을하는지 먼저 파악을하고 그것을 어떻게 가공할지 선택하여 사용해야한다.!
-
-
 ------------------------
 ⚠⚠ 서비스에서 실수 paramMap!!!!!
 List든 Map이든 뭐든 p.getRequestObjectMapper이든 세션이든 뭐든 get으로받았으면 put으로 기존 불러왔던 리스트에 집어넣어줘야한다. 그래야지 뭘 추가하지 [x,y,z]가 있는데 a를 get으로 불러왔어 그럼 그걸 put으로 [x,y,z,a]로 집어 넣어줘야한다 이말이다!
 서비스에서 자꾸 실수를 한다. 값을 받았으면 넣어줘야하는데 계속 안넣어주니 이런 반복적인 실수를 범하고 있다.
+그리고 순서가 문제였다. 
+정확히 어떤기능을 하는지도 모르고 마구자비로 넣었다가 선언도 안한 것들을 넣다보니 오류가 난것이였다.
+고로 어떤기능을하는지 먼저 파악을하고 그것을 어떻게 가공할지 선택하여 사용해야한다.!
 
 
 ------------------------
@@ -194,7 +188,7 @@ List든 Map이든 뭐든 p.getRequestObjectMapper이든 세션이든 뭐든 get�
 
 ※※ 쿼리,다오,서비스 까지만 만들어주면 된다. (callService때문에)
 개요 : grid에 있는 조회한 리스트 들을 뽑을려고 한다. 여기선 페이지수도 상관없고 그냥조회된 모든 값들을 엑셀로 넘겨주려고 한다.
-excelUtils.js에 있는 fn.excelDownloadCallServiceFunc를 이용하여 차례대로 function에 있는 값들을 지정해주면된다. ex) $(grid).excelDownloadCallServiceFunc(callService, keyset, titleset, obj, "test", "test", 60000);  이렇게 말이다.
+excelUtils.js에 있는 fn.excelDownloadCallServiceFunc를 이용하여 차례대로 function에 있는 값들을 지정해주면된다. ex) `$(grid).excelDownloadCallServiceFunc(callService, keyset, titleset, obj, "test", "test", 60000);`  이렇게 말이다.
 그러기위해서는 일단 조회하는 것들이 필요하다(조회할때 ajax위에 있는 변수들 var datasplit,startdat,yrow,ip 등등)
 이것들을 이용하여 keyset과 titleset으로 html에 있는 key data값들과 s메시지 들을 잡아주고 
 obj 즉 파라미터로 넘긴 값들을 이용하여 조회하여 그 값들을 도출해내고 출력해준다.
@@ -202,9 +196,8 @@ obj 즉 파라미터로 넘긴 값들을 이용하여 조회하여 그 값들을
 2. keyset을 선언한다 : var keyset = $(grid).getKey();
 3. titleset을 선언한다 : var titleset = $(grid).getTitle();
 4. 검색 메소드 ajax위 변수들을 긁어 온다.
-5. param을 선언한다 : (검색 ajax에 있는 넘겨주는 data를 긁어 온다.) var obj = {StartDate: StartDate,
-	 			EndDate: EndDate,};
-6. 엑셀다운로드함수에 값을 넣어준다 : $(grid).excelDownloadCallServiceFunc(callService, keyset, titleset, obj, "test", "test", 60000);
+5. param을 선언한다 : (검색 ajax에 있는 넘겨주는 data를 긁어 온다.) `var obj = {StartDate: StartDate, EndDate: EndDate,};`
+6. 엑셀다운로드함수에 값을 넣어준다 : `$(grid).excelDownloadCallServiceFunc(callService, keyset, titleset, obj, "test", "test", 60000);`
 
 참고자료 :  excelDownloadCallServiceFunc
 excelUtils.js               fn.excelDownloadCallServiceFunc참고하기
@@ -228,7 +221,7 @@ ex)['hacs1', 'hhacs', 'hhhcs', 'hacss1']
 해석 : 리스트스트링으로 만들어줄것이다 ids_list를 = parameterObject인 p에서 받아온 키값이 "ids"인 값을 getrequest를 이용하여 받아와서 List.class형식으로 저장
 그러면 쭉 스트링이였던 그 값들은 하나하나 분리된 리스트 스트링으로 바뀌게 된다.
 그렇지만 이대로 쿼리문에 들어가면 오류가 나기에 foreach를 사용하여 배열 수 만큼 for문을 돌려 하나하나 배열값들을 넣어주는 쿼리문을 만들어야한다. 
-<foreach collection="ids_list" item="ids" open="and a.user_id IN (" separator="," close=")"> #{ids} </foreach> 이렇게 해주면 된다.
+`<foreach collection="ids_list" item="ids" open="and a.user_id IN (" separator="," close=")"> #{ids} </foreach>` 이렇게 해주면 된다.
 List<String>컬렉션 을 넣어주면 되고 아이템은 맘대로 넣어주는 변수명이다 하지만 되도록이면 #{x}값으로 넣어주도록 하자 헷갈리기도 하고 결국 그게그거니까
  ids=["hacs1", "hhacs", "hhhcs", "hacss1"]  -->>
  ids_list=[hacs1, hhacs, hhhcs, hacss1]
@@ -239,8 +232,12 @@ List<String>컬렉션 을 넣어주면 되고 아이템은 맘대로 넣어주�
 ⚠⚠ # db에서 서비스로 값 가져오기(쿼리문 짰다는 가정하에)
 
 @Autowired를 통해 직접적으로 Dao dao;로 가져올 수 있지만 여기는 아닌듯 하다. sql세션에서 값을 받아와 사용하는것같다.(공부필요)
+
+```
 List<Map<String, Object>> list = sqlSession.getMapper(TemplateDao.class).templateAuditList(paramMap);
 		p.addResultData("list", list);
+```
+
 이렇게 값을 DB->DAO->SERVICE로 가져온 다음 list로 가져오면 된다.
 이러면 list에 SQL select문에서 가져온 action_code나 detail같은 값들을 list에(LIST로 만들었으니) 저장할 수 있다. 
 
