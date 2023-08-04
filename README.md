@@ -487,7 +487,63 @@ console.log($("#" + REname).val());	// '학스'
 
 맘에드는 차트를 선택하고 거기에 들어가는 데이터들이 뭐가 필요한지 파악한다.
 
+예를들어 원형차트에서 필요한 것들은 label, color, value, isSliced가 필요하다고 해보자
 
+그리고 나는 xxx테이블에서 file_size가 미정인것과 1000미만인것 1000이상인것 이렇게 총 3개의 조건을 원형차트에서 보여준다고 가정해보자
+
+그러면 쿼리문에서
+
+```
+SELECT '미정' as label,'1' as isSliced,'#e46c0a' as color, COUNT(CASE WHEN file_size = '' THEN 1 END) as value 
+	FROM xxx
+UNION ALL
+SELECT '1000 미만' as label,'1' as isSliced,'#e4c40a' as color, COUNT(CASE WHEN file_size != '' and 999 > file_size::int THEN 1 END) as value 
+	FROM xxx
+UNION ALL
+SELECT '1000 이상' as label,'1' as isSliced,'#E6E6FA' as color, COUNT(CASE WHEN file_size != '' and file_size::int > 1000 THEN 1 END) as value 
+	FROM xxx
+```
+이렇게 만들면 된다.
+
+사실 이렇게 데이터를 나눠줄 필요도 없이 쿼리에서 끝내버린다면 다이랙트로 뷰까지 꽂아도 된다.
+
+그럼 이제 저렇게 나온 리스트를 차트에 넣어주기만 하면 된다.
+
+뷰 화면이다.
+```
+function hacsChart() {
+$.ajax({
+	url:"/hacsTest/hacsChart.do",
+	type:"post",
+	dataType:"json",
+	data: {},
+	success:function(data){
+		var hhhh = data.list;
+		// [{color : "#e46c0a", isSliced : "1", label : "미정", value : "40"},{color : "#e4c40a", isSliced : "1", label : "1000 미만", value : "90"}.....]; 이런식으로 들어갈 예정
+		$("#chartList").insertFusionCharts({
+			type: "doughnut2d",
+			width: "100%",
+			height: "100%",
+			dataFormat: "json",
+			dataSource: {
+			// Chart Configuration
+			"chart": {
+				"theme": "fusion",
+				~
+				차트 디자인은 차트마다 다르기에 생략
+				~
+				"exportMode": "client"
+			},
+			"data": hhhh // 여기에 쿼리에서 가져왔던 차트 데이터를 꼽아 넣는다
+			}
+		});
+	}
+});
+}
+```
+이러면 내가 고른 원형차트를 만들 수 있다.
+
+데이터를 잘가져오면 매우 쉽다는걸 느낄 수 있다.
 
 ------------------------
 
