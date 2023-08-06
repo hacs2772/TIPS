@@ -528,11 +528,11 @@ $.ajax({
 			dataSource: {
 			// Chart Configuration
 			"chart": {
-				"theme": "fusion",
+				"theme": "fusion",	// 테마
 				~
 				차트 디자인은 차트마다 다르기에 생략
 				~
-				"exportMode": "client"
+				"exportMode": "client"	// 저장모드
 			},
 			"data": hhhh // 여기에 쿼리에서 가져왔던 차트 데이터를 꼽아 넣는다
 			}
@@ -545,5 +545,5 @@ $.ajax({
 
 데이터를 잘가져오면 매우 쉽다는걸 느낄 수 있다.
 
-------------------------ㅇㅇㅇ
+------------------------
 
