@@ -655,5 +655,192 @@ id값이 `testgrid1`이 초기화되며 활성화 되고
 
 숨기기의 예시
 
-------------------------
+먼저 html
+```
+<div style="display: none;" id="vList">
+	<table id="testgrid">
+		<thead>
+			<tr>
+				<th id = "aaa" data-key="label">조건</th>
+				<th id = "bbb" data-key="color">색상</th>
+				<th id = "ccc" data-key="value">데이터 수</th>						
+			</tr>
+		</thead>
+	</table>
+	<table id="testgrid_template" >
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+	</table>
+</div>
+```
 
+그리고 JQuery 부분이다.
+```
+$("button").bind( "click", function(event) {
+var targetID = $(this).attr('id');
+document.getElementById("vList").style.display="none";
+
+if(targetID == "chartTest1"){
+	chartMaking(1);
+	} else if(targetID == "chartTest5") {
+		document.getElementById("vList").style.display="block";
+		hacsChart(5);
+	} 
+});
+```
+
+먼저 이 화면을 실행하면 html에서 보면 알 수있겠지만 style을 none으로 설정해 두었다.
+
+말그대로 시작부터 숨기고 시작한다는 것이다.
+
+하지만 특정 버튼을 누르게 된다면 block명령으로 표시하게 된다.
+
+고로 
+
+`document.getElementById("태그 id명").style.display="none";` 이면 숨기는것이고
+
+`document.getElementById("태그 id명").style.display="block";` 이면 나타나게 보이는 것이다.
+
+
+그리고 주의할점은 저 태그 id명에 보통 jquery에서 아이디를 태그하려면 $("#태그 id명") 이렇게 쓰는데 여기서는 #을 사용하지 않는다는점이다.(내가 실수했으니 기록해 놓는다...)
+
+
+**Q????** 아니 근데 왜 HTML에서 disply none을 해놨는데 jquery에서도 또 none을 썻는가????
+
+
+**A????** 사실 지워서 그렇지 위에 적어놓은 버튼이벤트 말고도 다른버튼이 많다. 그래서 버튼을 클릭할때마다 none를 설정해 주지 않으면 귀찮게 조건마다 none을 계속 설정해 줘야한다.
+
+혹시만약 저 버튼이벤트를 들어갈때마다 html에만 none을 설정해 두었다면
+
+예시 : 처음 화면 입장시 gird1 none (html에서 none을 설정해 둿기때문) -> 버튼 클릭으로 gird1 block -> 다른버튼 클릭 시 grid1 block 계속 유지
+		
+  
+html과 button에 둘다 none설정해 뒀을 시
+
+예시 : 처음 화면 입장시 gird1 none (html에서 none을 설정해 둿기때문) -> 버튼 클릭으로 gird1 block -> 다른버튼 클릭 시 grid1 none
+
+------------------------
+⚠⚠ #HRML #JQuery **태그 삭제, 숨기기, 보이기** part3. 야매 응용(feat. context클릭 popup이벤트)
+
+
+태그를 숨기는건 정말 비주얼적으로만 숨기는 것이다. (심지어 막 이뻐지지도 않음)
+
+그럼 이걸 좀더 활용할 순 없을까??
+
+
+야매로 쓰는경우에도 사용될때가 있다
+
+바로바로 현재화면을 좀더 구체적으로 알려주는 detail popup 이벤트를 할때이다.
+
+참고로 팝업창을 띄워주기 위해선 java spring상 view안에 새로운 popup폴더를 만들고 거기에 새로운 popup view를 만들어야한다.(기본)
+
+그런데 여기서 화면에 있는 값을 넘겨주기위해선 param를 이용하여 넘겨주어야한다.
+
+
+특히 한 화면에 여러 개를 보여주는 탭을 넣는다면 탭에 때라 어떤탭인지 divison을 해줘야하고 그거에 따른 각각의 다른 popup이벤트도 있어야한다.
+
+그러기위해선 division을 정해주는 치밀한 방법이 있는데....(여기서 part1 마지막쯤에 나왔던 switch case문에있는 division의 비밀이 풀리게 된다.)
+
+
+코드를보며 설명을 더하겠다.
+
+먼저 jquery쪽을 보여주겠다.
+
+```
+$("button").bind( "click", function(event) {
+var targetID = $(this).attr('id');
+document.getElementById("vList").style.display="none";
+
+if(targetID == "chartTest1"){
+	chart(1);
+} else if(targetID == "chartTest2") {
+	Chart2(2);
+} else if(targetID == "chartTest3") {
+	Chart3(3);
+} else if(targetID == "chartTest4") {
+	Chart4(4);
+} else if(targetID == "chartTest5") {
+	document.getElementById("vList").style.display="block";
+	Chart5(5);
+}
+});
+
+/* 차트1
+function Chart1(division){
+	$("#test").val(division);
+	~
+	~
+*/
+/* 차트2
+function Chart2(division){
+	$("#test").val(division);
+	~
+	~
+*/
+/* 차트3
+function Chart3(division){
+	$("#test").val(division);
+	~
+	~
+*/
+
+```
+
+
+그리고html을 보여주겠다
+```
+<div id="SOPT">
+	<input type="text" id="test" style="display: none;"></input>
+
+	<button id="chartTest1">차트1</button>
+	<button id="chartTest2">차트2</button>
+	<button id="chartTest3">차트3</button>
+	<button id="chartTest4">차트4</button>
+	<button id="chartTest5">차트5</button>
+	
+	<div class="contextClick" id="chartList" style="height:550px;">
+	</div>
+		
+</div>
+```
+
+보면알겠지만 버튼 클릭시 각자 차트로 들어가면서 division을 가지고 들어간다. 그리고 그걸 input태그에 id = test 여기에 저장해놓고
+
+none으로 숨겨놓게 된다.
+
+고로 데이터는 입력됐지만 보여지진 않는다는 점이다.
+
+
+그럼 이제 이걸 본격적으로 활용해보자
+
+뷰에서도 탭을 나누는데에 사용할 수 있겠지만 
+
+팝업이벤트에 사용도 한다(팝업이벤트는 매우 복잡하지 api를 사용한다. (사용법 마다 다를 수 있음))
+```
+var division = $("#division")
+var params = new Object();
+params.divison = division;
+
+$(target).openLayerPopup("Test", "testPopup", "레이업 팝업", 832, 582, params, true);
+```
+
+그리고 testPopup.jsp에 들어가보면
+```
+var division = "${division}";
+console.log("division은?==", division); // division은?==1 (또는 2or3.....)
+```
+
+이렇게 팝업뷰에 손쉽게 가져올 수 있다.
+
+
+물론 이건 팝업이벤트에대한 야매 예시였고 
+
+그에 맞는 다양한 방법들은 누가 어떻게 응용하냐에 따라 다양하게 쓰일 수 있다고 생각한다.
+
+
+요약 : 화면에 데이터 저장(숨김) -> 다른곳에 가져다가 사용 (필요할 경우 표시도 가능)
+
+------------------------
