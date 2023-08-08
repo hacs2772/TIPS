@@ -546,4 +546,104 @@ $.ajax({
 데이터를 잘가져오면 매우 쉽다는걸 느낄 수 있다.
 
 ------------------------
+⚠⚠ #HRML #JQuery **태그 삭제, 숨기기, 보이기** part1. 삭제
+
+태그의 종류는 많지만 사용하는법은 어렵지 않다.
+
+부득이하게 한 화면에 여러 태그를 사용하되 원하는 태그만 보여주고싶은 경우가 생길 수 있다.
+
+ex) 한 화면에 탭버튼을 이용하여 원하는 차트의 팝업창만 보여주고싶은경우
+
+html 코드를 보여주면서 설명하겠다.
+```
+<div id="vList" style="height: calc(65vh - 200px);">
+	<table id="testgrid1">
+		<thead>
+			<tr id="hidden">
+				<th style="width: 130px;" data-key="action_time">사용시간</th>
+				<th style="width: 80px;" data-key="user_name">이름</th>
+				<th style="width: 80px;" data-key="user_id">아이디</th>
+				<th style="width: 100px;" data-key="group_name">그룹이름</th>	
+				<th style="width: 130px;" data-key="ip">IP</th>	
+				<th style="width: 150px;" data-key="contents">행위</th>							
+			</tr>
+		</thead>
+	</table>
+	<table id="testgrid5">
+		<thead>
+			<tr id="hidden">
+				<th data-key="pdate">날짜</th>
+				<th data-key="job_id">아이디</th>
+				<th data-key="job_type">직업 유형</th>	
+				<th data-key="job_status">직업 상태</th>	
+				<th data-key="file_size">파일 사이즈</th>						
+			</tr>
+		</thead>
+	</table>
+	<table id="testgrid1_template" >
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+	</table>
+	<table id="testgrid5_template" >
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+	</table>
+	<div id="Lpaging"></div>
+</div>
+```
+이건 testpopup에서 보여주는 팝업이벤트 화면부분이다.
+
+이 화면에선 2가지의 팝업창을 각자 조건에 따라 보여주게 되는데
+
+이걸 그냥 보여줄 수 없다. 왜냐하면 각자 차트마다 호출하는 data-key도 다를뿐더러 리스트 컬럼개수도 그리드1은 5개 그리드5는 6개 이다.
+
+그냥 보여주게 된다면 하나의 팝업창에 2개의 표시도 안되는 그리드가 보여지게된다.
+
+이러한 경우 각자 조건에 맞게 태그를 삭제해 줘야한다.
+
+그러면 JQuery 조건문을 보여주겠다.
+```
+var division = "${division}";
+switch (division) {
+case "1": 
+	$("table").remove("#testgrid5");
+	$("table").remove("#testgrid5_template");
+	$("#testgrid1").createTable(true, true);
+	chart1(1);
+	break;
+case "5":
+	$("table").remove("#testgrid1");
+	$("table").remove("#testgrid1_template");
+	$("#testgrid5").createTable(true, true);
+	chart5(1);
+	break;
+}
+```
+팝업창 클릭시 `"${division}"`을 가지고 들어가는데
+
+이때 들고가는 division마다 case조건을 타고 각자 보여줄 태그를 선택해준다.
+
+말로 설명하자면 case1을 타게되면 `table`태그에 있는 id값이 `testgrid5`이거와 `testgrid5_template`이걸 지워지고
+
+id값이 `testgrid1`이 초기화되며 활성화 되고
+
+`function chart1`에 들어가게된다. (참고로 `(1)`이건 currentpage라고 현재 페이지 수를 가지고 들어가는 것이다. 페이지도 추후에 다루도록 하겠다.)
+
+이렇게 원하는 테이블을 일단 html에 설정해 놓고 필요없는건 지우면서 들어가는 팝업이벤트나 클릭이벤트에 유용하게 사용할 수 있는 케이스를 보여주었다.
+
+------------------------
+⚠⚠ #HRML #JQuery **태그 삭제, 숨기기, 보이기** part2. 숨기기, 보이기
+
+------------------------
 
