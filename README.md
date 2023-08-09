@@ -901,9 +901,6 @@ function hacsChart2() {
 		},
 		success:function(data){
 			var hhhh = data.resultList;
-			console.log("dd11",data);
-			console.log("dd22",hhhh);
-			console.log("dd22",hhhh.length);
 			$("#chartList").insertFusionCharts({
 				type: "line",
 				  width: "100%",
