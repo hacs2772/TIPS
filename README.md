@@ -866,16 +866,16 @@ console.log("division은?==", division); // division은?==1 (또는 2or3.....)
 
 그것을 뷰에서 받아서 fusion chart를 이용하여 이쁘게 차트로 보여주면 끝이다.
 
-
+<br><br>
 **서론은 끝났다 바로 코드로 가보자!**
-
+<br>
 
 간단한 뷰부터 보여주겠다.
 
 일단 나는 fusionchart에서 Simple line차트를 이용할 것이다. (url : https://www.fusioncharts.com/charts/line-area-charts/simple-line-chart?framework=jquery)
 
-이 차트에서 필요한건 데이터인 value 값(로그횟수)과 데이터마다의 제목인 label(날짜별)이 필요하다.
-
+이 차트에서 필요한건 데이터인 value 값(로그횟수)과 데이터마다의 제목인 label(날짜별)이 필요하다.<br>
+<br><br>
 내가짠 뷰 코드이다.
 
 ```
@@ -927,8 +927,8 @@ function hacsChart2() {
 	});
 }
 ```
-이렇게 뷰에서 먼저 넘겨줄 값들(오늘날짜와 한달전 날짜)을 구한 뒤 넘겨주려고 한다.(값들이 궁금하면 로그를 찍어보자)
-
+이렇게 뷰에서 먼저 넘겨줄 값들(오늘날짜와 한달전 날짜)을 구한 뒤 넘겨주려고 한다.(값들이 궁금하면 로그를 찍어보자)<br>
+<br><br>
 
 그리고 쿼리부터 보여주겠다.(서비스는 복잡하니 쿼리다음에)
 
@@ -941,6 +941,106 @@ function hacsChart2() {
 </select>
 ```
 간단하다
+
+보면 알 수 있겠지만 log테이블에서 action_time만 가져오고있다.(date형식)
+
+왜냐하면 어차피 건수만 필요하기에 굳이 다른 컬럼은 필요없기 때문이다! (주의! 그렇다고 count로 가져오면 안된 count는 서비스에서 할거임!)<br><br>
+
+
+그리고 문제의 서비스를 보여주겠다.
+```
+public void hacsChart3(ParameterObject p) throws Exception {
+    Map<String, Object> param = p.getRequestParamMap();
+    
+    String ago = p.getRequestString("ago");	// 오늘부터 한달전 날짜에 +31을 해가며 찾을것이니 과거 날짜만 들고온다.
+    List<String> dateList = new ArrayList<>();
+    
+    // 한달간 데이터를 구할것이기에 31을 넣음, 한달이 31이 안되는 값들은 어차피 매치가 안될것이니 최댓값인 31을 삽입한다.
+    for (int i = 31; i >= 1; i--) {
+        String addDay = AddDate(ago, 0, 0, i);
+        dateList.add(addDay);
+    }
+
+    List<Map<String, Object>> list = sqlSession.getMapper(ThirdTestDao.class).hacsChart3(param);
+
+    Map<String, Integer> matchingCountMap = new HashMap<>(); // 각 날짜별 일치하는 갯수를 저장할 맵 초기화
+    // 쿼리에서 조건에 맞는 리스트 사이즈만큼 사이클을 돌려준다.
+    for (int i = 0; i < list.size(); i++) {
+        Map<String, Object> bbb = list.get(i);
+        String actionTime = (String) bbb.get("action_time");
+
+        if (dateList.contains(actionTime)) {
+            matchingCountMap.put(actionTime, matchingCountMap.getOrDefault(actionTime, 0) + 1);
+        }
+    }
+
+    List<Map<String, Object>> resultList = new ArrayList<>();
+
+    for (String date : dateList) {
+        int matchingCount = matchingCountMap.getOrDefault(date, 0);
+
+        Map<String, Object> resultMap = new HashMap<>();
+        resultMap.put("label", date);
+        resultMap.put("value", matchingCount);
+        
+        resultList.add(resultMap);  // 차트에 쓰일 label과 value만 넣는다.
+    }
+    
+   // 뷰에 최종적으로 resultList를 넘겨준다.
+    p.addResultData("resultList", resultList);
+}
+
+// 뷰에서 추출받은 ago에 날짜를 계산해주는 메소드이다. 이것이 있어야 day에 숫자를 31이상 더해도 자동으로 month로 넘어간다. year도 마찬가지이다.
+private static String AddDate(String strDate, int year, int month, int day) throws Exception {
+	
+    SimpleDateFormat dtFormat = new SimpleDateFormat("yyyy-MM-dd");
+    
+	Calendar cal = Calendar.getInstance();
+    
+	Date dt = dtFormat.parse(strDate);
+    
+	cal.setTime(dt);
+    
+	cal.add(Calendar.YEAR,  year);
+	cal.add(Calendar.MONTH, month);
+	cal.add(Calendar.DATE,  day);
+    
+	return dtFormat.format(cal.getTime());
+}
+```
+뷰에서 넘겨받은 ago와 쿼리에서 추출했던 action_time을 가공할 차례이다.
+
+쉽게 이해되진 않겠지만(그래서 주석 엄청 달아 놓음) 원리는 이렇다
+
+ago를 먼저 가공하여 31등분으로 쪼개준다(이때 AddDate 메소드를 이용한다.)
+
+그러면 ago는 2023-08-08, 2023-08-07~~~~2023-07-08 이렇게 나눠지게 될것이다.
+
+그리고 이걸 dateList라는 리스트에 살포시 넣어놓고<br><br>
+
+쿼리에서 넘겨받은 list를 
+
+for문을 나온 데이터만큼 돌려 이것또한 위와같이 깔끔하게 만든다.
+
+그리고 if문을 통해 일치하는 값들을 matchingCountMap 리스트에 살포시 넣는다.
+
+그리고 그것을 마지막 for문을 통해
+
+키값과 벨류값으로 나눠주고<br><br>
+
+그걸 뷰에 넘겨줘야하니 resultMap에다가 최종적으로 담아준 뒤 `p.addResultData("resultList", resultList);`를 통해 뷰로 토스한다.
+
+그러면 결과가
+
+`[{label: 2023-08-08, value: 2648}, {label: 2023-08-07, value: 264}, {label: 2023-08-06, value: 548} ~~~~~~~ {label: 2023-07-08, value: 8648}]` 
+
+이렇게 담기게 되고 그걸 처음에 보여줬던 뷰에있는 data에다가 삽입하면 끝이나게된다.<br><br><br>
+
+
+![화면 캡처 2023-08-09 172005](https://github.com/hacs2772/TIPS/assets/107793142/6e7002d9-3095-4eff-9b7f-bf151459e4e0)
+
+
+
 
 
 
