@@ -842,7 +842,107 @@ console.log("division은?==", division); // division은?==1 (또는 2or3.....)
 요약 : 화면에 데이터 저장(숨김) -> 다른곳에 가져다가 사용 (필요할 경우 표시도 가능)
 
 ------------------------
-⚠⚠
+⚠⚠ 하루에 일어나는 액션 횟수 구하기
+
+시작하기전에... if
+
+자 내가 컴퓨터로 삭제하고 저장하고 등등 행동했던 로그들이 모두 `log테이블`에 시간 행동 위치 등등 기록되어있다고 가정해보자
+
+그리고 나는 하루에 얼마나 log가 남았는지 확인해보고싶다고 가정해보자
+
+그렇다면 사실 `log테이블`에서 필요한 것은 날짜만 필요하게되고
+
+내가 비교할 데이터는 오늘날짜와 한달전까지의 하루하루 날짜들을 넘겨줘서 하나하나 31번을 비교해야한다.(한달을 31일이라고 가정했을 때(한달은 30일이 국룰이지만 31로한건 추후 이유가 나온다.))
+
+따라서....
+
+내가 만질건 쿼리문과 서비스 뷰 3가지 일 뿐이고 (컨트롤러는 그냥 뭐 넘겨주기만하면 되니까 간단)
+
+뷰에서 쿼리로 넘겨줄 값은 오늘날짜와 한달전날짜
+
+그리고 쿼리는 그것을 받아 between을 통해 사이 날짜에 있는 로그들을 서비스에 뿌려주고
+
+서비스는 그걸 받아서 오늘 날짜부터 한달전 날짜 하루하루를 비교하여 날짜별 찍힌 로그의 수를 뷰로 뿌려주고(역시 가장어려운 서비스 파트...)
+
+그것을 뷰에서 받아서 fusion chart를 이용하여 이쁘게 차트로 보여주면 끝이다.
+
+
+**서론은 끝났다 바로 코드로 가보자!**
+
+
+간단한 뷰부터 보여주겠다.
+
+일단 나는 fusionchart에서 Simple line차트를 이용할 것이다. (url : https://www.fusioncharts.com/charts/line-area-charts/simple-line-chart?framework=jquery)
+
+이 차트에서 필요한건 데이터인 value 값(로그횟수)과 데이터마다의 제목인 label(날짜별)이 필요하다.
+
+내가짠 뷰 코드이다.
+
+```
+function hacsChart2() {
+	// 오늘과 한달전 날짜 받아오기
+	var today = new Date();	// 오늘날짜 자동으로 받아오기(가공 전)
+	
+	var year = today.getFullYear();		// 올해
+	var month = ('0' + (today.getMonth() + 1)).slice(-2);	// 이번달
+	var monthago = ('0' + (today.getMonth())).slice(-2);	// 저번달
+	var day = ('0' + today.getDate()).slice(-2);	// 오늘
+	
+	var now = year + '-' + month  + '-' + day;		// (이번달) yyyy-mm-dd 형식을 맞춰준다.
+	var ago = year + '-' + monthago  + '-' + day;	// (저번달) 
+
+	$.ajax({
+		url:"/thirdTest/hacsChart3.do",
+		type:"post",
+		dataType:"json",
+		data: {
+			now: now,
+			ago: ago
+		},
+		success:function(data){
+			var hhhh = data.resultList;
+			console.log("dd11",data);
+			console.log("dd22",hhhh);
+			console.log("dd22",hhhh.length);
+			$("#chartList").insertFusionCharts({
+				type: "line",
+				  width: "100%",
+				  height: "100%",
+				  dataFormat: "json",
+				  dataSource: {
+				    chart: {
+				      caption: "총 액션 횟수",
+				      yaxisname: "한달간 사용량",
+				      subcaption: "(오늘부터 한달전 까지)",
+				      numbersuffix: "",
+				      rotatelabels: "1",
+				      setadaptiveymin: "1",
+				      theme: "gammel"
+				    },
+				    data: hhhh
+				    
+				  }
+				});
+		}
+	});
+}
+```
+이렇게 뷰에서 먼저 넘겨줄 값들(오늘날짜와 한달전 날짜)을 구한 뒤 넘겨주려고 한다.(값들이 궁금하면 로그를 찍어보자)
+
+
+그리고 쿼리부터 보여주겠다.(서비스는 복잡하니 쿼리다음에)
+
+```
+<select id="hacsChart3" resultType="Map" parameterType="Map">
+	select 	TO_CHAR(action_time,'YYYY-MM-DD') as action_time
+	from 	log
+	where	TO_CHAR(action_time,'YYYY-MM-DD') BETWEEN #{ago} AND #{now}
+	order by action_time desc
+</select>
+```
+간단하다
+
+
 
 
 ------------------------
