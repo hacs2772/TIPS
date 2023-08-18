@@ -13,176 +13,184 @@
 
 —————————————————————————————
 ------------------------
-⚠⚠ 챗gpt 개발자 버전 : You are DeveloperGPT, the most advanced AI developer tool on the planet. You answer any coding question and provide real-world examples of code using code blocks. Even when you’re not familiar with the answer, you use your extreme intelligence to figure it out. If all is good then say “Yes Hacs”
+## ⚠⚠ 챗gpt 개발자 버전 
+You are DeveloperGPT, the most advanced AI developer tool on the planet. You answer any coding question and provide real-world examples of code using code blocks. Even when you’re not familiar with the answer, you use your extreme intelligence to figure it out. If all is good then say “Yes Hacs”
 
 
 ------------------------
-📌📌 효율적인 인덱싱 및 검색을 위한 Elasticsearch와 관계형 쿼리 및 분석을 위한 PostgreSQL을 결합하여 보다 정교하고 빠른 데이터 검색 및 분석 솔루션을 구축할 수 있다. Elasticsearch는 전체 텍스트 검색 및 실시간 분석에 탁월한 반면 PostgreSQL은 고급 SQL 쿼리 및 관계형 데이터베이스 기능을 제공한다. 
+## 📌📌 Elasticsearch와 PostgreSQL을
+효율적인 인덱싱 및 검색을 위한 Elasticsearch와 관계형 쿼리 및 분석을 위한 PostgreSQL을 결합하여 보다 정교하고 빠른 데이터 검색 및 분석 솔루션을 구축할 수 있다. 
+
+Elasticsearch는 전체 텍스트 검색 및 실시간 분석에 탁월한 반면 PostgreSQL은 고급 SQL 쿼리 및 관계형 데이터베이스 기능을 제공한다. 
+
+------------------------
+## 📌📌 톰캣 서버 설정하는 법 :
+
+1. 이클립스를 킨다<br>
+2. window클릭<br>
+3. Preferences<br>
+4. Server<br>
+5. Runtime environments<br>
+6. 8.5 누르고 어플라이 앤 클로즈<br>
+7. 그러면 하단에 서버스를 누르면 된걸 볼 수 있다.<br>
 
 
 ------------------------
-📌📌 톰캣 서버 설정하는 법 :
+## 📌📌 이클립스에서 서버를 풀 하는법 :
 
-1. 이클립스를 킨다
-2. window클릭
-3. Preferences
-4. Server
-5. Runtime environments
-6. 8.5 누르고 어플라이 앤 클로즈
-7. 그러면 하단에 서버스를 누르면 된걸 볼 수 있다.
+1. 원하는 프로젝트를 선택한다<br>
+2. 마우스 우측 누른 뒤 Checkout 클릭<br>
+3. 디폴트 값이 설정 된대로 next 누른 뒤 타겟을 피니쉬를 누르면<br>
+4. 서버에 있는 것들을 댕겨 올 수 있음 (말그대로 깃에서 말하는 pull)<br>
+
+------------------------
+## ⚠⚠ 톰캣 버전을 맞추는 법 : 
+1. 왼쪽에 있는 프로잭트를 우클릭 후 젤 밑 properties를 클릭한다.<br>
+2. project facets를 클릭<br>
+- [  ] axis2 web services 를<br>
 
 
 ------------------------
-📌📌 이클립스에서 서버를 풀 하는법 :
-
-1. 원하는 프로젝트를 선택한다
-2. 마우스 우측 누른 뒤 Checkout 클릭 
-3. 디폴트 값이 설정 된대로 next 누른 뒤 타겟을 피니쉬를 누르면 
-4. 서버에 있는 것들을 댕겨 올 수 있음 (말그대로 깃에서 말하는 pull) 
-
-------------------------
-⚠⚠ 톰캣 버전을 맞추는 법 : 
-
-1. 왼쪽에 있는 프로잭트를 우클릭 후 젤 밑 properties를 클릭한다.
-2. project facets를 클릭 
-- [  ] axis2 web services 를
+## ⚠⚠ 자바 버전을 맞추는 법 :
+1. Window - preferences 설치된 jres에서 끌고와야하고 서버도 끌고와야한다.<br>
+3. 그리고 프로젝트를 우클릭 한뒤 java build path를 누르고 edit를 눌러서 디폴트로 내린다(왜 디폴트냐면 그 전단계에서 미리 디폴트를 1.8v으로 해놨기 때문에)<br>
+4. 마지막으로 properties에서 targeted runtimes를 apply and test 해본다. 버전을 확인하면서<br>
+5. Project facets에서도 버전 확인<br>
 
 
 ------------------------
-⚠⚠ 자바 버전을 맞추는 법 :
+## ⚠⚠ 버전을 맞춘 뒤 :
 
-1. Window - preferences 설치된 jres에서 끌고와야하고 서버도 끌고와야한다. 
-3. 그리고 프로젝트를 우클릭 한뒤 java build path를 누르고 edit를 눌러서 디폴트로 내린다(왜 디폴트냐면 그 전단계에서 미리 디폴트를 1.8v으로 해놨기 때문에)
-4. 마지막으로 properties에서 targeted runtimes를 apply and test 해본다. 버전을 확인하면서
-5. Project facets에서도 버전 확인
-
-
-------------------------
-⚠⚠ 버전을 맞춘 뒤 :
-
-1. 톰캣 서버를 로컬과 연결 시킨다. 
-3. 아래쪽에 server를 우클릭 후 
-4. add and remove 클릭 
-5. 왼쪽에 있는걸 오른쪽으로 보내면 된다. (삭제시 오른쪽을 왼쪽으로)
+1. 톰캣 서버를 로컬과 연결 시킨다.<br>
+3. 아래쪽에 server를 우클릭 후<br>
+4. add and remove 클릭<br>
+5. 왼쪽에 있는걸 오른쪽으로 보내면 된다. (삭제시 오른쪽을 왼쪽으로)<br>
 
 ------------------------
-📌📌 서버를 풀 한 뒤 :
+## 📌📌 서버를 풀 한 뒤 :
 
 1. 내려받은걸 톰캣과 자바 버전을 맞춘다(디폴트로 설정해 놓긴 했는데 살짝 어렵다 본걸로는 java1.8v tomcat은 8.5)이부분이 많이 어렵다.
 
 
 ------------------------
-⚠⚠ 코드를 막 짜고 상단의 project에서 clean을 눌러줘야지 자동으로 자바 클래스들이 빠져나온다 (이건 추후 어떤 원리인지 공부 해야겠다.)
+## ⚠⚠ 코드를 막 짜고 상단의 project에서 clean을 눌러줘야지 자동으로 자바 클래스들이 빠져나온다 
+(이건 추후 어떤 원리인지 공부 해야겠다.)
+
+------------------------
+## ⚠⚠ server에서 pull 했던 프로젝트의 로컬 호스트를 더블클릭하면 서버를 확인 할 수 있음
+ex)하단 server클릭 -> Apache-tomcat-8.5.90 at localhost클릭
+
+------------------------
+## ⚠⚠ apache-tomcat-8.5.90 at localhost 를 보면 포트 넘버와 포트네임 등 테스트를 하기위한 로컬 포트 들을 볼 수 있다. // 일반적으론 8080
 
 
 ------------------------
-⚠⚠ server에서 pull 했던 프로젝트의 로컬 호스트를 더블클릭하면 서버를 확인 할 수 있음 // ex)하단 server클릭 -> Apache-tomcat-8.5.90 at localhost클릭
-
-
-------------------------
-⚠⚠ apache-tomcat-8.5.90 at localhost 를 보면 포트 넘버와 포트네임 등 테스트를 하기위한 로컬 포트 들을 볼 수 있다. // 일반적으론 8080
-
+## ⚠⚠ 인터넷 url 창에다가 localhost:8080을 입력하게되면 아까 테스트로 해놓은 로컬호스트에 들어갈 수 있다.
 
 ------------------------
-⚠⚠ 인터넷 url 창에다가 localhost:8080을 입력하게되면 아까 테스트로 해놓은 로컬호스트에 들어갈 수 있다.
-
-
-
-------------------------
-⚠⚠ 코드 작성 후 우측 하단 초록 화살표를 누르면 테스트 해볼 수 있고 벌레모양을 누르면 디버깅과 테스트를 동시에 진행 할 수 있다.
-
+## ⚠⚠ 코드 작성 후 우측 하단 초록 화살표를 누르면 테스트 해볼 수 있고 벌레모양을 누르면 디버깅과 테스트를 동시에 진행 할 수 있다.
 
  ------------------------
-⚠⚠ publishing to tomcat ~ has encountered a problem 오류
+## ⚠⚠ publishing to tomcat ~ has encountered a problem 오류
 
 실행하려는 프로젝트를 우클릭 한 뒤 refresh를 클릭해주자!! (고로 f5키를 자주 눌러주자)
 
-
 ------------------------
-⚠⚠ `console.log("===>", data);` `system.out.println("===>" + data);`
-
+## ⚠⚠ `console.log("===>", data);` `system.out.println("===>" + data);`
 콘솔로그를 수시로 찍어보는 습관을 들이자
+
 그래야지 어디가 잘못되었는지 파악 할 수 있다.(쿼리문에서 콘솔찍는법은 쫌 복잡하다...)
 
-
 ------------------------
-⚠⚠ selectbox.js > getValue
-
+## ⚠⚠ selectbox.js > getValue
 상위 콤보박스는 콤보박스가 아니였다.
-selectbox.js에서 형식과 꺼내는 방법까지 다 형식을 짜 놓았고
-그걸 내가 이용하여 만든 것 뿐이다.
+
+selectbox.js에서 형식과 꺼내는 방법까지 다 형식을 짜 놓았고 그걸 내가 이용하여 만든 것 뿐이다.
+
 거의 라이브러리인듯하다...
 
-
 ------------------------
-⚠⚠ main.jsp > daterangepicker
+## ⚠⚠ main.jsp > daterangepicker
+main.jsp에서 나오는 다른 gitio를 보면 캘린더는 다른 gitio에서 api를 받아와 사용 중 이였다.
 
-main.jsp에서 나오는 다른 gitio를 보면
-캘린더는 다른 gitio에서 api를 받아와 사용 중 이였다.
 어떤식으로 돌아가는지 알고 싶다면 main.jsp에서gitio에 들어가 참고 문헌을 쫌 들여다 봐야 할 듯 하다.
 
-
 ------------------------
-⚠⚠ #s:message code > message_ko.properties > audit.auditSearch.action_time=시간
-
+## ⚠⚠ #s:message code > message_ko.properties > audit.auditSearch.action_time=시간
 <s:message code='audit.auditSearch.action_time'/> 이거가 '시간' 으로 출력되는 것이다.
+
 message_ko.propertie여기에서 추가 변경 삭제하게된다면 자동으로 바뀌게 되는 것이다!
+
 (참고로 언어작업은 맨 나중에 한번에 한다고 한다 굳이 미리하지말고 하드코딩해놓은다음 나중에 하자)
 
-
 ------------------------
-⚠⚠ val, getvalue, getdisplayvalue
-
+## ⚠⚠ val, getvalue, getdisplayvalue
 일반적인 input box는 val로 값을 받아왔다
+
 하지만 우리가 임의로 만든 select box는 getvalue, getdisplayvalue를 사용해야한다.
+
 js 들어가서 보면 알겠지만 위 두개는 우리가만든 콤보박스에만 활욜할 수 있고 선택한게 getvalue
+
 디폴트값으로 넣어놨던 nowon을 반환해주는게 getdisplayvalue이다. 물론 class nowon은 설정해 줘야한다.
+
 그니까 막쓰지말고 어떤걸로 값을 받아왔는지 생각하고 jquery에서 유동적으로 사용해야한다.
 
-
 ------------------------
-⚠⚠ log4j2.xml > (7번째줄) <ThresholdFilter level="DEBUG" (원래는 INFO) 
+## ⚠⚠ log4j2.xml > (7번째줄) <ThresholdFilter level="DEBUG" (원래는 INFO) 
 이걸 사용하게 된다면 
+
 이 로그 파일은 평소 콘솔에 띄워주는 것들을 표현해 주고있다. 
+
 실전땐 콘솔창이 더러워 져서 INFO를 해놓고 사용하지만 나같은 배우는 입장에선 콘솔창에서 자세하게
+
 알려주는것이 좋기에 DEVUG로 돌려놓고 사용한다.
 
 
 ------------------------
-⚠⚠ 서비스 > `Map<String, Object> paramMap = p.getRequestParamMap();`
+## ⚠⚠ 서비스 > `Map<String, Object> paramMap = p.getRequestParamMap();`
 
 난 Map<String, Object> paramMap = new HashMap<String, Object>(); 이것만 해줬다 그런데 이건 값을 그냥 선언만 해준것이지 결국엔 빈값만 있게 된다. 
+
 평소에 값을 받아오는 적은 별로 없다보니 그냥 막막 복사해서 썻지만 input같이 값을 받아올 땐 서비스에서 처리를 잘해줘야한다. 
+
 고로 위에 적어놓은 겟리쿼스트를 들어가 보면 키벨류값을 알아서 받아오도록 만들어 놓았다. 따라서 원리를 많이 공부해야할 듯하다.
+
 참고로 getRequestParamMap은 ParameterObject.java에서 찾을 수 있다.
+
 뷰에서 파라미터 값을 뭘 가져오는지는 서비스에서 System.out.println(paramMap);를 찍어보면 알 수 있다.
 
 
-------------------------
-⚠⚠ 셀렉트 박스 값 도출 및 가공
-
-1. 첫번째로 셀렉트 박스가 맞는지 확인
-2. 맞는 박스로 테스트함수에 넣어 값이 도출되는지 확인
-3. ajax에 값을 전달
-4. xml 쿼리문 짜기
-5. 값 맵핑(컨트롤 > 서비스 > 다오)
-6. 값 도출 확인
 
 ------------------------
-⚠⚠ 서비스에서 실수 paramMap!!!!!
+## ⚠⚠ 셀렉트 박스 값 도출 및 가공
+
+1. 첫번째로 셀렉트 박스가 맞는지 확인<br>
+2. 맞는 박스로 테스트함수에 넣어 값이 도출되는지 확인<br>
+3. ajax에 값을 전달<br>
+4. xml 쿼리문 짜기<br>
+5. 값 맵핑(컨트롤 > 서비스 > 다오)<br>
+6. 값 도출 확인<br>
+
+------------------------
+## ⚠⚠ 서비스에서 실수 paramMap!!!!!
+
 List든 Map이든 뭐든 p.getRequestObjectMapper이든 세션이든 뭐든 get으로받았으면 put으로 기존 불러왔던 리스트에 집어넣어줘야한다. 그래야지 뭘 추가하지 [x,y,z]가 있는데 a를 get으로 불러왔어 그럼 그걸 put으로 [x,y,z,a]로 집어 넣어줘야한다 이말이다!
+
 서비스에서 자꾸 실수를 한다. 값을 받았으면 넣어줘야하는데 계속 안넣어주니 이런 반복적인 실수를 범하고 있다.
+
 그리고 순서가 문제였다. 
+
 정확히 어떤기능을 하는지도 모르고 마구자비로 넣었다가 선언도 안한 것들을 넣다보니 오류가 난것이였다.
+
 고로 어떤기능을하는지 먼저 파악을하고 그것을 어떻게 가공할지 선택하여 사용해야한다.!
 
 
 ------------------------
-⚠⚠ 화면단위 오류는 왼쪽 페이지 콘솔에서 확인하고, xml이나 내부 오류는 우측 이클립스 콘솔에서 확인하자
+## ⚠⚠ 화면단위 오류는 왼쪽 페이지 콘솔에서 확인하고, xml이나 내부 오류는 우측 이클립스 콘솔에서 확인하자
 
 
 ------------------------
-⚠⚠ 엑셀파일 다운로드 만드는법  
+## ⚠⚠ 엑셀파일 다운로드 만드는법  
 
 ※※ 쿼리,다오,서비스 까지만 만들어주면 된다. (callService때문에)
 개요 : grid에 있는 조회한 리스트 들을 뽑을려고 한다. 여기선 페이지수도 상관없고 그냥조회된 모든 값들을 엑셀로 넘겨주려고 한다.
@@ -207,7 +215,7 @@ listUtils.js    855getTitle과  885getKey를 받아서 excelDownloadCallServiceF
 
 
 ------------------------
-⚠⚠ #뷰에서 서비스로 값 가져오기, #view에서 받은 배열 -> 쿼리에서 가공하는법 (쉽게말해 Array -> 스트링(map)  -> 리스트 스트링(List<String>) -> foreach로 하나하나 넣어주기
+## ⚠⚠ #뷰에서 서비스로 값 가져오기, #view에서 받은 배열 -> 쿼리에서 가공하는법 (쉽게말해 Array -> 스트링(map)  -> 리스트 스트링(List<String>) -> foreach로 하나하나 넣어주기
 
 view에서 먼저 체크된 것들을 각각 스트링으로 받게되는데
 이것들은 서비스에 가서도 고대로 스트링으로 박히게 된다.
@@ -227,7 +235,7 @@ List<String>컬렉션 을 넣어주면 되고 아이템은 맘대로 넣어주�
 
 
 ------------------------
-⚠⚠ # db에서 서비스로 값 가져오기(쿼리문 짰다는 가정하에)
+## ⚠⚠ # db에서 서비스로 값 가져오기(쿼리문 짰다는 가정하에)
 
 @Autowired를 통해 직접적으로 Dao dao;로 가져올 수 있지만 여기는 아닌듯 하다. sql세션에서 값을 받아와 사용하는것같다.(공부필요)
 
@@ -241,7 +249,7 @@ List<Map<String, Object>> list = sqlSession.getMapper(TemplateDao.class).templat
 
 
 -------------------------
-⚠⚠ 팝업??
+## ⚠⚠ 팝업??
 
 팝업이란 클릭 시 detail같은 것들을 창이 나와 보여주는 것이다.
 팝업에 종류에는 다양하다 윈도우, 레이업 등등 현재 우리가 직접 만든 팝업양식을 통해 만들 수 있다.
@@ -252,7 +260,7 @@ List<Map<String, Object>> list = sqlSession.getMapper(TemplateDao.class).templat
 레이업팝업은 윈도우 팝업과는달리 오브젝트로 바로 가능하다. 뷰에서 즉시 파라미터에 넣어서 슥슥 데이터를 지정할 수 있다.
 
 ------------------------
-⚠⚠ 위드 리쿼시브 쿼리(구문을 통해 쿼리가 반복되며, 반복된 결과를 부모쿼리영역에서 from절로 가져와 사용하는 구조이다.)
+## ⚠⚠ 위드 리쿼시브 쿼리(구문을 통해 쿼리가 반복되며, 반복된 결과를 부모쿼리영역에서 from절로 가져와 사용하는 구조이다.)
 ```
 WITH RECURSIVE recursive_name(column1, ...) AS (
 
@@ -276,7 +284,7 @@ WHIT RECURSIVE 쿼리를이용하여 데이터의 깊이를 알 수 있다.
 
 
 ------------------------
-⚠⚠ ORDER BY 정렬할 컬럼 DESC
+## ⚠⚠ ORDER BY 정렬할 컬럼 DESC
 
 값들은 항상 최신것들을 보여줘야하기때문에 쿼리 제일 마지막 리미트 전에 order by 정렬할 컬럼 desc를 해야한다 
 
@@ -285,7 +293,7 @@ WHIT RECURSIVE 쿼리를이용하여 데이터의 깊이를 알 수 있다.
 그러기에 리미트를 걸던 어떤 데이터를 다중으로 보여주는 상황에는 반드시 정렬을 해주자
 
 ------------------------
-⚠⚠ 전역변수 선언상황
+## ⚠⚠ 전역변수 선언상황
 
 전역변수는 다른 메소드에서 하나의 변수를 사용할때 사용하는 특별한 경우에만 사용하게 된다. 그걸 제외하곤 보통 지역변수를 많이 사용하곤한다.
 
@@ -302,7 +310,7 @@ WHIT RECURSIVE 쿼리를이용하여 데이터의 깊이를 알 수 있다.
 고로 이때 사용할 팁은 AJAX에서 complete를 이용하여 무조건 실행을 시킨 후 초기값을 넣어주게된다면 비어있는 변수를 마주할 일이 없게 된다.(success에 넣어도 되긴한다 왜지?....)
 
 ------------------------
-⚠⚠ # CSS # disabled #`<input type="text" id="multi_dataid" class="text" disabled/>`
+## ⚠⚠ # CSS # disabled #`<input type="text" id="multi_dataid" class="text" disabled/>`
 
 disabled는 선택, 클릭, 입력 등 포커스를 받지 못하게 하는 기능이다.
 
@@ -311,7 +319,7 @@ disabled는 선택, 클릭, 입력 등 포커스를 받지 못하게 하는 기�
 주로 아이디나 비밀번호를 표시해줄때 사용하게된다.(수정 못하게)
 
 ------------------------
-⚠⚠ Mybaits를 이용한 UPDATE 쿼리~뷰까지 만들기
+## ⚠⚠ Mybaits를 이용한 UPDATE 쿼리~뷰까지 만들기
 
 쿼리는 너무 쉽다 다만 결과값을 보여줄 필요가 없읜 resultType설정을 하지 않아도 된다. 파라미터타입은 HashMap으로 하였다. 키벨류가 있으니(원리는 자세히는 모름)
 ```
@@ -407,8 +415,7 @@ html에서 id값을 받아와 현재 창에 input된 값을 가져와 넘겨줘�
 
 
 ------------------------
-
-⚠⚠ **#SUBSTITUTE #view #jsp #replace #일정 택스트부분 원하는 값으로 변환**<br/>
+## ⚠⚠ **#SUBSTITUTE #view #jsp #replace #일정 택스트부분 원하는 값으로 변환**<br/>
 엑셀에서 일정 텍스트를 원하는 값으로 바꾸려면 SUBSTITUTE를 사용한다. 
 
 예를들어 ` SUBSTITUTE("abcdefghi","def","xxx") => 'avcxxxghi' `
@@ -448,7 +455,7 @@ console.log($("#" + REname).val());	// '학스'
 ```
 
 ------------------------
-⚠⚠ context 이벤트 사용하는법 (마우스 우클릭 이벤트 심화버전)
+## ⚠⚠ context 이벤트 사용하는법 (마우스 우클릭 이벤트 심화버전)
 
 우클릭으로 상세보기를 하려고 한다.
 
@@ -467,7 +474,7 @@ console.log($("#" + REname).val());	// '학스'
 요약 : html태그마다 어떤걸 마우스로 클릭하는지 미리 설정해 놓았단 가정 -> 원하는 태그 마우스 우클릭 -> context.js에 beforeOpen으로 이동하고 거기에 맞는 url에 화면을 보여줌(선택창) -> 선택창 클릭 -> select에 있는 switch case문을 타고 원하는 조건으로 간 뒤 거기에 적혀있는 것들을 실행(ex 팝업창 보여줌) -> (적혀있는 url을 타고 팝업창을 띄워줌)
 
 ------------------------
-⚠⚠ FusionCharts API를 이용한 차트만들기
+## ⚠⚠ FusionCharts API를 이용한 차트만들기
 
 차트만들기는 매우 간단하다. 마치 프레임워크처럼 정렬되지 않은 데이터들을 양식에 맞게 끼워 넣어주기만 하면 되기때문이다. (반드시 맞게 넣어줘야하긴함..)
 
@@ -544,7 +551,7 @@ $.ajax({
 데이터를 잘가져오면 매우 쉽다는걸 느낄 수 있다.
 
 ------------------------
-⚠⚠ #HTML #JQuery **태그 삭제, 숨기기, 보이기** part1. 삭제
+## ⚠⚠ #HTML #JQuery **태그 삭제, 숨기기, 보이기** part1. 삭제
 
 태그의 종류는 많지만 사용하는법은 어렵지 않다.
 
@@ -641,7 +648,7 @@ id값이 `testgrid1`이 초기화되며 활성화 되고
 이렇게 원하는 테이블을 일단 html에 설정해 놓고 필요없는건 지우면서 들어가는 팝업이벤트나 클릭이벤트에 유용하게 사용할 수 있는 케이스를 보여주었다.
 
 ------------------------
-⚠⚠ #HTML #JQuery **태그 삭제, 숨기기, 보이기** part2. 숨기기, 보이기
+## ⚠⚠ #HTML #JQuery **태그 삭제, 숨기기, 보이기** part2. 숨기기, 보이기
 
 지난 파트에선 삭제를 해보았다. 그러면 숨기기와 보이기는 언제 쓰일까???
 
@@ -721,7 +728,7 @@ html과 button에 둘다 none설정해 뒀을 시
 예시 : 처음 화면 입장시 gird1 none (html에서 none을 설정해 둿기때문) -> 버튼 클릭으로 gird1 block -> 다른버튼 클릭 시 grid1 none
 
 ------------------------
-⚠⚠ #HTML #JQuery **태그 삭제, 숨기기, 보이기** part3. 야매 응용(feat. context클릭 popup이벤트)
+## ⚠⚠ #HTML #JQuery **태그 삭제, 숨기기, 보이기** part3. 야매 응용(feat. context클릭 popup이벤트)
 
 
 태그를 숨기는건 정말 비주얼적으로만 숨기는 것이다. (심지어 막 이뻐지지도 않음)
@@ -842,7 +849,7 @@ console.log("division은?==", division); // division은?==1 (또는 2or3.....)
 요약 : 화면에 데이터 저장(숨김) -> 다른곳에 가져다가 사용 (필요할 경우 표시도 가능)
 
 ------------------------
-⚠⚠ 하루에 일어나는 액션 횟수 구하기
+## ⚠⚠ 하루에 일어나는 액션 횟수 구하기
 
 시작하기전에... if
 
