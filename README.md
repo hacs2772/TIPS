@@ -218,21 +218,34 @@ listUtils.js    855getTitle과  885getKey를 받아서 excelDownloadCallServiceF
 ## ⚠⚠ #뷰에서 서비스로 값 가져오기, #view에서 받은 배열 -> 쿼리에서 가공하는법 (쉽게말해 Array -> 스트링(map)  -> 리스트 스트링(List<String>) -> foreach로 하나하나 넣어주기
 
 view에서 먼저 체크된 것들을 각각 스트링으로 받게되는데
+
 이것들은 서비스에 가서도 고대로 스트링으로 박히게 된다.
+
 Map<String, Object> paramMap = p.getRequestParamMap(); 이렇게 선언했기때문에
-ex)['hacs1', 'hhacs', 'hhhcs', 'hacss1']'hacs1', 'hhacs', 'hhhcs', 'hacss1'
+
+ex) `['hacs1', 'hhacs', 'hhhcs', 'hacss1']'hacs1', 'hhacs', 'hhhcs', 'hacss1'`
+
 그렇기에 서비스에서 다시 가공해줘야한다.
+
 List<String> ids_list = p.getRequestObjectMapper("ids", List.class);
-ex)['hacs1', 'hhacs', 'hhhcs', 'hacss1']
+
+ex)`['hacs1', 'hhacs', 'hhhcs', 'hacss1']`
+
 해석 : 리스트스트링으로 만들어줄것이다 ids_list를 = parameterObject인 p에서 받아온 키값이 "ids"인 값을 getrequest를 이용하여 받아와서 List.class형식으로 저장
+
 그러면 쭉 스트링이였던 그 값들은 하나하나 분리된 리스트 스트링으로 바뀌게 된다.
+
 그렇지만 이대로 쿼리문에 들어가면 오류가 나기에 foreach를 사용하여 배열 수 만큼 for문을 돌려 하나하나 배열값들을 넣어주는 쿼리문을 만들어야한다. 
+
 `<foreach collection="ids_list" item="ids" open="and a.user_id IN (" separator="," close=")"> #{ids} </foreach>` 이렇게 해주면 된다.
+
 List<String>컬렉션 을 넣어주면 되고 아이템은 맘대로 넣어주는 변수명이다 하지만 되도록이면 #{x}값으로 넣어주도록 하자 헷갈리기도 하고 결국 그게그거니까
+```
  ids=["hacs1", "hhacs", "hhhcs", "hacss1"]  -->>
  ids_list=[hacs1, hhacs, hhhcs, hacss1]
-뭐가달라졌는지 보이는가? 스트링이 리스트로 바뀐것이다!
+```
 
+뭐가달라졌는지 보이는가? 스트링이 리스트로 바뀐것이다!
 
 ------------------------
 ## ⚠⚠ # db에서 서비스로 값 가져오기(쿼리문 짰다는 가정하에)
@@ -251,13 +264,20 @@ List<Map<String, Object>> list = sqlSession.getMapper(TemplateDao.class).templat
 -------------------------
 ## ⚠⚠ 팝업??
 
-팝업이란 클릭 시 detail같은 것들을 창이 나와 보여주는 것이다.
-팝업에 종류에는 다양하다 윈도우, 레이업 등등 현재 우리가 직접 만든 팝업양식을 통해 만들 수 있다.
+일반적으로 팝업은 클릭 시 detail같은 것들을 창이 나와 보여주는 것이다. (광고나 추가 창)
+
+일반적인 팝업에 종류에는 다양하다 윈도우, 레이업 등등 인터넷에 나와있는 팝업오픈소스들을 통해 만들 수 있다.
+
+일반적인 윈도우 팝업과 레이업 팝업의 가장 큰 차이는
+
 윈도우팝업과 달리 레이업팝업은 현재 창에서 또다른 창을 불러오는것이 아니라 현재 창에서 팝업창을 띄워주는 것이다.
+
 그러기에 레이업팝업창은 현재창에서 벗어날 수 없다. 마치 alert창 같은 느낌인 것이다.
-팝업창을 띄우는 법은 $(this).openLayerPopup이 있다. 
-참고로 팝업윈도우는 api를 사용하고있다. 그러기에 js파일에 들어가서 어떻게 값을 받아오고 사용하는지 공부해봐야한다.
+
 레이업팝업은 윈도우 팝업과는달리 오브젝트로 바로 가능하다. 뷰에서 즉시 파라미터에 넣어서 슥슥 데이터를 지정할 수 있다.
+
+참고로 팝업이벤트는 api를 많이 사용하고있다.
+﻿
 
 ------------------------
 ## ⚠⚠ 위드 리쿼시브 쿼리(구문을 통해 쿼리가 반복되며, 반복된 결과를 부모쿼리영역에서 from절로 가져와 사용하는 구조이다.)
