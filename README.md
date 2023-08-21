@@ -1131,3 +1131,7 @@ https://smartclient.com/smartclient-11.0/isomorphic/system/reference/SmartClient
 다음엔 api를 이용하여 데이터를 추출하고 조건을 주는 방법에 대해 설명하겠다.
 
 ------------------------
+## ⚠⚠ SmartClient 11.ver part.2 활용하기
+
+
+------------------------
