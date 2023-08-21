@@ -1133,5 +1133,38 @@ https://smartclient.com/smartclient-11.0/isomorphic/system/reference/SmartClient
 ------------------------
 ## ⚠⚠ SmartClient 11.ver part.2 활용하기
 
+------------------------
+## ⚠⚠ postgreSQL과 MySQL 차이들
+
+**리미트**
+
+postgreSQL
+```
+offset	0
+limit 	100
+// 출력 1 ~ 101
+```
+
+MySQL
+```
+limit 	100
+offset	0
+// 출력 1 ~ 101
+
+limit 0, 100
+// 출력 1 ~ 101
+```
+
+**DATE**
+
+postgreSQL
+```
+TO_CHAR(a.action_time, 'YYYY-MM-DD HH24:MI:SS')
+```
+
+MySQL
+```
+DATE_FORMAT(a.action_time,'%Y-%m-%d %H:%i:%s')
+```
 
 ------------------------
