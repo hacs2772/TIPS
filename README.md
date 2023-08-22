@@ -1131,7 +1131,181 @@ https://smartclient.com/smartclient-11.0/isomorphic/system/reference/SmartClient
 다음엔 api를 이용하여 데이터를 추출하고 조건을 주는 방법에 대해 설명하겠다.
 
 ------------------------
-## ⚠⚠ SmartClient 11.ver part.2 활용하기
+## ⚠⚠ SmartClient 11.ver part.2 활용하기(game)
+
+간단하게 그리드를 만들어도 좋지만 내가먼저 해볼건 게임을 만들것이다.
+
+무슨게임이냐면 상자를 페이지 안에서 유지시키기 게임이다.(벽에 닿으면 게임오버)
+
+사실 테트리스를 만들어 보려고 했으나 새로은 블럭이 땅에 닿으면 생겨나는 메소드를 만드는 와중 오류가 산더미 처럼 늘어나 스파게티 소스가 되어버렸기 때문에 그건 나중에 하고
+
+먼저 코드부터 보여주겠다.
+
+testgame.jsp이다.
+
+```
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+<%@ include file="/WEB-INF/views/newtest/testgame.jsp" %>
+
+// 게임 시작 버튼
+isc.right_button.create({
+	ID: "testBTN",
+    title: "test",
+    width: 93, height: 22,
+    click:function(){
+	theLabel.show();
+	theLabel.startAutoMove();
+    }
+});
+
+// 실제 게임
+isc.Label.create({
+    ID: "theLabel",
+    canFocus: true,
+    autoDraw: false,
+    padding: 4,
+    backgroundColor:"#eaeaea",
+    width: 100,
+    height: 100,
+    autoMoveRandomDirection: true,
+    left: isc.Page.getWidth() / 2 - 50, <!-- 가로 중앙 -->
+    top: isc.Page.getHeight() / 2 - 50, <!-- 세로 중앙 -->
+    autoMoveInterval: 150,
+    autoMoveTimer: null,
+    isAutoMoving: false, // Flag to track auto movement
+    startAutoMove: function () {
+        if (!this.isAutoMoving) {
+            this.isAutoMoving = true;
+            this.autoMoveTimer = setInterval(this.moveAuto.bind(this), this.autoMoveInterval);
+        }
+    },
+    stopAutoMove: function () {
+        clearInterval(this.autoMoveTimer);
+        this.isAutoMoving = false;
+    },
+    getRandomDirection: function () {
+    	<!-- 랜덤이동 위치값 -->
+        var directions = [
+            { deltaX: 0, deltaY: 80 },
+            { deltaX: 80, deltaY: 0 },
+            { deltaX: -80, deltaY: 0 },
+            { deltaX: 0, deltaY: 0 },
+            { deltaX: 40, deltaY: 0 },
+            { deltaX: -40, deltaY: 0 },
+            { deltaX: 0, deltaY: -80 },
+            { deltaX: 50, deltaY: -50 },
+            { deltaX: 60, deltaY: -60 },
+            { deltaX: 0, deltaY: 0 },
+            { deltaX: -50, deltaY: 50 },
+            { deltaX: -60, deltaY: 60 },
+            { deltaX: 80, deltaY: 80 },
+            { deltaX: 0, deltaY: 0 },
+            { deltaX: -130, deltaY: -130 },
+            { deltaX: 130, deltaY: 130 },
+            { deltaX: 130, deltaY: -130 },
+            { deltaX: -130, deltaY: 130 },
+            { deltaX: 0, deltaY: 0 }
+            <!-- 추가적인 방향을 원하면 여기에 더 추가할 수 있습니다. -->
+        ];
+        
+        var randomIndex = Math.floor(Math.random() * directions.length);
+        return directions[randomIndex];
+    },
+    
+    // 기존의 moveAuto 메서드를 수정
+    moveAuto: function () {
+        var direction;
+        
+        <!-- 랜덤한 방향으로 이동하도록 설정 -->
+        if (this.autoMoveRandomDirection) {
+            direction = this.getRandomDirection();
+        } else {
+            direction = { deltaX: 0, deltaY: this.autoMoveDeltaY };
+        }
+        
+        var left = this.getLeft();
+        var top = this.getTop();
+        
+        left += direction.deltaX;
+        top += direction.deltaY;
+        
+        <!-- 경계를 벗어나지 않도록 처리 -->
+        var maxLeft = isc.Page.getWidth() - this.getWidth();
+        var maxTop = isc.Page.getHeight() - this.getHeight();
+        if (left < 0 || left > maxLeft || top < 0 || top > maxTop) {
+        this.stopAutoMove();  <!-- 자동 이동을 멈춥 -->
+        alert("게임오버");
+        return; <!-- 함수 종료 -->
+    }
+
+        this.setLeft(left);
+        this.setTop(top);
+    },
+    <!-- 키보드 눌렀을 때 경계 벗어나지 않게 하는 메소드 -->
+    moveManual: function (deltaX, deltaY) {
+        var left = this.getLeft();
+        var top = this.getTop();
+        
+        left += deltaX;
+        top += deltaY;
+        
+        <!-- 경계를 벗어나지 않도록 처리 -->
+        var maxLeft = isc.Page.getWidth() - this.getWidth(); // 최대 왼쪽 위치
+        var maxTop = isc.Page.getHeight() - this.getHeight(); // 최대 아래 위치
+        if (left < 0) left = 0;
+        if (top < 0) top = 0;
+        if (left > maxLeft) left = maxLeft;
+        if (top > maxTop) top = maxTop;
+
+        this.setLeft(left);
+        this.setTop(top);
+
+        if (this.isAutoMoving) {
+            this.startAutoMove(); <!-- 키보드 눌러도 계속 자동으로 움직임 -->
+        }
+    },
+    keyPress: function () {
+        switch (isc.EventHandler.getKey()) {
+            case "Arrow_Left":
+                this.moveManual(-100, 0);
+                break;
+            case "Arrow_Right":
+                this.moveManual(100, 0);
+                break;
+            case "Arrow_Up":
+                this.moveManual(0, -100);
+                break;
+            case "Arrow_Down":
+                this.moveManual(0, 100);
+                break;
+            default:
+                return;
+        }
+    }
+});
+```
+주석으로 설명해 놓았지만 코드를 간단히 설명해 보자면
+
+일단 게임은 숨겨 놓고 버튼을 누를 시 게임이 시작되게 된다.
+
+그리고 상자를 정의 하고 상자는 중앙에서 시작하게 된다.
+
+그리고 중요한건 getRandomDirection을 이용하여 상자가 랜덤으로 움직이게 하였다.
+
+그러면 var directions 이 배열이 정의된 것대로 랜덤으로 움직이게 된다.(중간중간 xy값에 0을 둘다 집어넣은이유는 이렇게 하면 엇박으로 움직이기때문이다! 난이도 상승!)
+
+그리고 moveAuto를 보면 이것으로 인해 랜덤 움직임이 페이지 최대 값을 넘어갈 수 없고 넘어가게 된다면 게임오바 알람창이 뜸과 동시에 자동으로 이동이 멈추게 된다.
+
+그리고 moveManual은 키보드로 움직이는데에 한계점을 적어논 것이다 이것도 있어야지 키보드로 움직일 수 있는 최댓값이 화면 밖에 벗어나지 못하게 하는 역할을 한다.
+
+마지막으 keyPress 메소드를 통해 키보드를 눌렀을 때 상자가 움직이게 할 수 있다.
+
+고로 키보드로 쉴새없이 움직이면서 벽에 붙게만 안하면 게임이 무한 지속될 수 있다!\
+
+![hh](https://github.com/hacs2772/TIPS/assets/107793142/6fa8f0a2-e8ac-4179-b84c-65ae5cc3dd00)
+
 
 ------------------------
 ## ⚠⚠ postgreSQL과 MySQL 차이들
