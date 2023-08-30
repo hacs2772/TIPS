@@ -1444,27 +1444,27 @@ bw.close();
 
 그럼 엄청나게 많은 출력량이 나온 경우 예시를 보여주겠다. (밑에 있는건 print와 BufferedWriter의 속도 비교이다.)
 ```
-	BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-	long startTime = System.nanoTime(); // 혹은 System.currentTimeMillis();
-        
-        // sysoutprint 테스트할때 사용하자
-//        for (int i = 0; i < 1000000; i++) {
-//            System.out.println("Line " + i);
-//        }
-        
-	// BufferedWriter 테스트할때 사용하자
-        for (int i = 0; i < 1000000; i++) {
-        	bw.write("Line " + i + "\n");
-        }
-        
-        long endTime = System.nanoTime(); // 혹은 System.currentTimeMillis();
-        long duration = endTime - startTime;
-        
-        System.out.println("Total time taken: " + duration + " nanoseconds"); // 혹은 밀리초 단위로 변환하여 출력
-        
-        // 스트림 정리
-        bw.flush();  // 버퍼 비우기, 버퍼 내용을 출력 장치로 내보냄
-        bw.close();  // 출력 스트림 닫기
+BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+long startTime = System.nanoTime(); // 혹은 System.currentTimeMillis();
+
+// sysoutprint 테스트할때 사용하자/
+// for (int i = 0; i < 1000000; i++) {
+//    System.out.println("Line " + i);
+//}
+
+// BufferedWriter 테스트할때 사용하자
+for (int i = 0; i < 1000000; i++) {
+	bw.write("Line " + i + "\n");
+}
+
+long endTime = System.nanoTime(); // 혹은 System.currentTimeMillis();
+long duration = endTime - startTime;
+
+System.out.println("Total time taken: " + duration + " nanoseconds"); // 혹은 밀리초 단위로 변환하여 출력
+
+// 스트림 정리
+bw.flush();  // 버퍼 비우기, 버퍼 내용을 출력 장치로 내보냄
+bw.close();  // 출력 스트림 닫기
 ```
 처음에 말했지만 한두개 정도 출력이면 sysoutprint가 빠르겠지만 저렇게 대량의 출력을 요구하는경우 BufferedWriter가 월등하게 빠르다 (실제로 돌려보면 한번에 슥 빡!)
 
