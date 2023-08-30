@@ -1414,6 +1414,106 @@ DATE_FORMAT(a.action_time,'%Y-%m-%d %H:%i:%s')
 고로 구글링이나 챗지피티보다 더 빠르고 유용할 수도 있다.(+@ 혼자서 해냈다는 뿌듯함)
 
 ------------------------
+## ⚠⚠ BufferedReader와 BufferedWriter 사용법과 사용 이유 (+@ StringTokenizer)
+
+자 일단 BufferedWriter 와 system.out.print에 차이에 대해 먼저 설명하겠다.
+
+먼저 자주 쓰이고 만만한 system.out.print먼저 예시를 보여주겠다.
+```
+system.out.println("가나다라");
+// 출력 : 가나다라
+```
+
+그 다음 BufferedWriter의 예시를 보여주겠다.
+```
+BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+bw.write("가나다라");
+bw.flush();
+bw.close();
+// 출력 : 가나다라
+```
+두개의 공통점은 똑같이 출력이 "가나다라" 인것은 같다.
+
+'아흐 입출력하는데 왜이리 복잡하게 해!' 라고 생각할 수 있지만
+
+방금 예시는 간단한 한두줄 출력이라 sysoutprint가 편하고 빠르다
+
+하지만 출력물이 점점 많아진다면??
+
+이러한 경우에는 BufferedWriter가 월등히 빠르다.(백준에서 정답은 맞는데 timeout되신적이 있으신분이면 충분히 공감할 듯)
+
+그럼 엄청나게 많은 출력량이 나온 경우 예시를 보여주겠다. (밑에 있는건 print와 BufferedWriter의 속도 비교이다.)
+```
+	BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+	long startTime = System.nanoTime(); // 혹은 System.currentTimeMillis();
+        
+        // sysoutprint 테스트할때 사용하자
+//        for (int i = 0; i < 1000000; i++) {
+//            System.out.println("Line " + i);
+//        }
+        
+	// BufferedWriter 테스트할때 사용하자
+        for (int i = 0; i < 1000000; i++) {
+        	bw.write("Line " + i + "\n");
+        }
+        
+        long endTime = System.nanoTime(); // 혹은 System.currentTimeMillis();
+        long duration = endTime - startTime;
+        
+        System.out.println("Total time taken: " + duration + " nanoseconds"); // 혹은 밀리초 단위로 변환하여 출력
+        
+        // 스트림 정리
+        bw.flush();  // 버퍼 비우기, 버퍼 내용을 출력 장치로 내보냄
+        bw.close();  // 출력 스트림 닫기
+```
+처음에 말했지만 한두개 정도 출력이면 sysoutprint가 빠르겠지만 저렇게 대량의 출력을 요구하는경우 BufferedWriter가 월등하게 빠르다 (실제로 돌려보면 한번에 슥 빡!)
+
+이해를 돕고자 print와 buffer의 차이를 설명하자면
+**print는 10000개의 벽돌을 하나하나 옮긴다 생각하면 되고 
+buffer는 10000개의 벽돌을 한 지게에 짊어지고 한번에 옮긴다 생각하면 된다.**
+
+출력은 같은데 시간에서 차이가 난다라... 이거야말고 컴퓨터 공학과 전공자라면 효율적이고 적절하게 쓸 수 있는 기회가 될것이라 생각한다
+
+**코딩은 주관식 문제인것처럼 답(출력)만 나온다고 다가 아니라 그 풀이과정(알고리즘)이 중요하기에 시간복잡도를 줄일 수 있는 절호의 찬스이다!** (그리고 뭔가 있어보이자나 ㅋ)
+
+
+그럼 본격적으로 BufferedWriter와 BufferedReader의 사용법을 설명하겠다.
+주석으로 자세하게 설명해 놓았다.
+```
+public class Main{
+	public static void main(String[] args) throws IOException {
+		// BufferedReader와 BufferedWriter 생성
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));		// 표준 입력을 받기 위한 BufferedReader 생성, like scanner
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));		// 표준 출력을 위한 BufferedWriter 생성, like sysoutprint
+		
+		// 입력처리
+		String s = br.readLine(); 		// 첫 번째 줄을 읽어와 문자열 변수 s에 저장
+		int i = Integer.parseInt(br.readLine()); // 두 번째 줄을 읽어와 정수 변수 i에 저장
+		
+		// 문자열 분리
+		StringTokenizer st = new StringTokenizer(br.readLine());	// 세 번째 줄을 읽어와 공백을 기준으로 문자열을 나누는 StringTokenizer 생성, 띄어쓰기 마다 토큰을 구분한다
+		
+		// 토큰 출력
+		while(st.countTokens()!=0)	// 토큰이 남아있을 때까지 반복, 토큰개수가 0이 아니면
+		    bw.write(st.nextToken()+", ");	// 다음 토큰을 읽어와 출력, 토큰마다 컴마 띄어쓰기 삽입
+		
+		// 결과 출력
+		System.out.println(s);  // 문자열 s 출력
+		System.out.println(i);  // 정수 i 출력
+		System.out.println(st);  // StringTokenizer 객체 st 출력(당연 값이 안나온다)
+		
+		// 스트림 정리
+		bw.flush();  // 버퍼 비우기, 버퍼 내용을 출력 장치로 내보냄
+		bw.close();  // 출력 스트림 닫기
+	}
+}
+```
+
+이렇게 BufferedReader와 BufferedWriter의 사용법과 왜 사용하는지에 대해 알아보았다.
+
+사용하는곳에 따라 적절히 사용하기 바란다.
+
+------------------------
 ## ⚠⚠ 이클립스 단축키 + 유용한 단축키
 
 ctrl + z  or  y : 되돌리기 , 되돌리기를 되돌리기
