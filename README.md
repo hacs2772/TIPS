@@ -1675,6 +1675,7 @@ When은 언제 단축키가 실행될까이다. 아까말했던 주석이 파일
 
 혹시 다른 단축키가 중복으로 적용될수도 있으니 확인해보고 단축키도 미리 실행해보고 겹치는게 없는지 확인한 뒤 설정하기 바란다.(중복되면 골치아프다..)
 
+
 ------------------------
 ## ⚠⚠ jQuery 기초 및 사용방법
 
@@ -1715,17 +1716,16 @@ $ : 뒤의 글자 패턴과 같으면 선택
 
 
 
-
 ////////////////////////////////+++++++++++++++++++++++++++
-var rowPerPage = $("#rowPerPage").find("a[class='nowon']").attr("value");
+var rowPage = $("#rowPage").find("a[class='nowon']").attr("value");
 
-$("#rowPerPage")
-// id가 rowPerPage것들중에 
+$("#rowPage")
+// id가 rowPage것들중에 
 find("a[class='nowon']")
 // a태그에 있는 class="nowon"인것의 
 attr("value")
 // value값 찾아서 
-rowPerPage =
+rowPage =
 // 변수 rowPerPage에 넣는다.
 //////////////////////////////----------------------------------------
 
@@ -1774,20 +1774,20 @@ commonUtil.js
 시간을 절약하거나 할때 쉽게 꺼내 사용할 수 있다.
 예시를 보여주겠다.
 
-	$.fn.openModelessPopup = function(subDir, popupID, title, width, height, param, resizable, scrollbar) {
+	$.fn.openPopup = function(subDir, popupID, title, width, height, param, resizable, scrollbar) {
 		// 여기에 팝업 창을 열기 위한 코드를 작성하면 된다.
 	}
 
 $.fn은 jQuery 프로토타입 객체를 나타낸다. jQuery에서 사용자 정의 플러그인을 만들 때 이 프로토타입 객체에 새로운 메소드를 추가할 수 있다.
 이렇게 추가된 메소드는 jQuery객체에서 호출할 수 있게 된다.
-따라서 $.fn.openModelessPopup은 openModelessPopup이라는 사용자정의 플러그인을 $.fn객체에 추가하는것을 나타낸다.
-이렇게하면 jQuery 선택자로 선택한 DOM요소에서 openModelessPopup함수를 호출할 수 있게 된다.
-밑에는 commonUtil.js에 있는 openModelessPopup메소드이다.
+따라서 $.fn.openPopup은 openPopup이라는 사용자정의 플러그인을 $.fn객체에 추가하는것을 나타낸다.
+이렇게하면 jQuery 선택자로 선택한 DOM요소에서 openPopup함수를 호출할 수 있게 된다.
+밑에는 commonUtil.js에 있는 openPopup메소드이다.
 
 그럼 다시 한줄한줄 설명해보겠다.
 
 $("#searchAll").bind( "click", function(event) {
-	$(this).openModelessPopup("rawlog", "logAllSearchResult", "", 770, 456, {}, true);
+	$(this).openPopup("rawlog", "logAllSearchResult", "", 770, 456, {}, true);
 });
 
 $("#searchAll")
@@ -1796,8 +1796,8 @@ bind( "click", function(event)
 // 클릭했을경우 일어나는 이벤트는
 $(this)
 // this(this는 위에서 호출했던 $("#searchAll")이다.)를
-openModelessPopup("rawlog", "logAllSearchResult", "", 770, 456, {}, true)
-// 보통 맨위에 선언해놓는<script src="파일경로/사용자정의함수.js">에 적혀 있는 js 파일에 $.fn.openModelessPopup을 찾아서 안에있는 값들을 그 메소드에 넣는다
+openPopup("rawlog", "logAllSearchResult", "", 770, 456, {}, true)
+// 보통 맨위에 선언해놓는<script src="파일경로/사용자정의함수.js">에 적혀 있는 js 파일에 $.fn.openPopup을 찾아서 안에있는 값들을 그 메소드에 넣는다
 
 //////////////////////////////////////------------------------------------------------------------------
 
@@ -1805,10 +1805,10 @@ openModelessPopup("rawlog", "logAllSearchResult", "", 770, 456, {}, true)
 
 
 ///////////////////////////////
-$("#container #tree > .treeCon > ol > li > .T2DOL > .simpleli").not($hacsHH).removeClass("nowon");
+$("#container #tree > .treeCon > ol > li > .2hacs > .simpleli").not($hacsHH).removeClass("nowon");
 
-$("#container #tree > .treeCon > ol > li > .T2DOL > .simpleli")
-// container 아래에 있는 요소중에서 id값이 tree인 것의 자손클래스가 treeCon인것에 ol태그 안에 있는 li태그 안에있는 T2DOL클래스 안에있는 simpleli클래스와
+$("#container #tree > .treeCon > ol > li > .2hacs > .simpleli")
+// container 아래에 있는 요소중에서 id값이 tree인 것의 자손클래스가 treeCon인것에 ol태그 안에 있는 li태그 안에있는 2hacs클래스 안에있는 simpleli클래스와
 not($hacsHH)
 // 변수 $hacsHH와 일치하지 않는
 removeClass("nowon")
@@ -1817,10 +1817,10 @@ removeClass("nowon")
 //////////////////////////////// 
 
 ////////////////////////////////
-var $fl = $("#container #tree > .treeCon > #olTree li > .T2DOL").find("li.fl").filter(".nowon");
+var $fl = $("#container #tree > .treeCon > #olTree li > .2hacs").find("li.fl").filter(".nowon");
 
-$("#container #tree > .treeCon > #olTree li > .T2DOL")
-// container 아래에 있는 요소중에서 id값이 tree인 것의 자손클래스가 treeCon인것에 자손id가 olTree값인 것에 그 아래에 있는 li태그중 클래스명이 T2DOL인것에
+$("#container #tree > .treeCon > #olTree li > .2hacs")
+// container 아래에 있는 요소중에서 id값이 tree인 것의 자손클래스가 treeCon인것에 자손id가 olTree값인 것에 그 아래에 있는 li태그중 클래스명이 2hacs인것에
 find("li.fl")
 // li태그중 클래스가 fl인 것을을 찾아
 filter(".nowon")
@@ -1832,11 +1832,11 @@ filter(".nowon")
 
 
 ////////////////////////////////////+++++++++++++++++++++++++++++++++++++++++++
-$("#pageNavigation, #showTreeSearch").hide();
+$("#pageNavi, #showTreeSearch").hide();
 
 // , 로 묶인경우
-$("#pageNavigation, #showTreeSearch")
-// id값이 pageNavigation인 것과 id값이 showTreeSearch것 둘다 
+$("#pageNavi, #showTreeSearch")
+// id값이 pageNavi인 것과 id값이 showTreeSearch것 둘다 
 hide()
 // 숨기기를 수행
 ///////////////////////////////////----------------------------------------------
@@ -1845,7 +1845,6 @@ hide()
 
 
 /////////////////////////////////////+++++++++++++++++++++
-// 이걸 넣어야지 기본값이 0으로 세팅되고 같은화면에서 다시 시작해도 0부터 시작하게 된다!
 $('[id^="loadingBar"]').each(function() {
     $(this).find('.progressing').css('width', '0%');
 });
@@ -1888,11 +1887,11 @@ css('width', vv2 + '%')
 
 
 ///////////////////////////////////////+++++++++++++++++++++++++++++++++++++
-var criteria = JSON.parse(unescape(decodeURIComponent($select_table.attr("criteria"))));
+var hacsAA = JSON.parse(unescape(decodeURIComponent($select_table.attr("hacsAA"))));
 참고로 $select_table은 a태그를 찾는 변수다
 
-$select_table.attr("criteria")
-// 변수를 통해 선택된 a 태그의 "criteria" 속성 값을 가져오는 부분이다. 이것은 jQuery의 attr() 메서드를 사용하여 "criteria" 속성 값을 읽어온다. 이 값은 일반적으로 URI 인코딩되어 있다.
+$select_table.attr("hacsAA")
+// 변수를 통해 선택된 a 태그의 "hacsAA" 속성 값을 가져오는 부분이다. 이것은 jQuery의 attr() 메서드를 사용하여 "hacsAA" 속성 값을 읽어온다. 이 값은 일반적으로 URI 인코딩되어 있다.
 decodeURIComponent()
 // 이 함수는 URI(Uniform Resource Identifier)컴포넌트를 디코딩합니다. 즉, URI 인코딩된 문자열을 원래의 형태로 디코딩합니다.
 // 예를 들어, URI에서 공백은 "%20"으로 인코딩된다. 이 함수를 사용하면 "%20"과 같은 인코딩된 문자열을 다시 공백으로 디코딩할 수 있다. 즉, 깔끔하게 나머지는 지운다고 볼 수 있다.
@@ -1903,6 +1902,7 @@ unescape()
 JSON.parse()
 // 이 함수는 문자열을 JSON 객체로 파싱(해석)한다. 즉, JSON 형식의 문자열을 JavaScript 객체로 변환한다.
 /////////////
+
 /////////////
 var table_name = $select_table.attr("table_name");
 
@@ -1911,6 +1911,7 @@ $select_table
 attr("table_name");
 // table_name속성값을 가져온다.
 /////////////
+
 /////////////
 var $selectThis = $(".fl > a[table_name="+table_name+"]").parent("li");
 
