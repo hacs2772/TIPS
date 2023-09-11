@@ -1676,3 +1676,254 @@ When은 언제 단축키가 실행될까이다. 아까말했던 주석이 파일
 혹시 다른 단축키가 중복으로 적용될수도 있으니 확인해보고 단축키도 미리 실행해보고 겹치는게 없는지 확인한 뒤 설정하기 바란다.(중복되면 골치아프다..)
 
 ------------------------
+## ⚠⚠ jQuery 기초 및 사용방법
+
+일단 여기서 설명할 방법은 다양한 예시를 보여주고 한줄한줄 풀어보면서 설명할 예정이다
+왜냐하면 나는 공부할때 개념보단 문제를 먼저 보기 때문이다
+쌩판 모르는 문제이지만 어떤것인지 예시를통해 추측하고 파악하는 케이스라 
+jQuery는 무엇무엇이다! 라고 말하는 기존 다른 블로그와는 다를것이다. 
+처음엔 간단한 사용방법만 알려주고 예시를 읽어가면서 어떻게 쓰이는구나 이런식으로 사용해야하는구나 하고 깨달아갔으면 좋겠다.(스스로 예시보고 사용방법보고 왓다갔다 해보자)
+일단 jQuery는 반드시 기본 틀 안에서 작성해야한다.
+예를들어
+$(document).ready(function(){ 	
+	// 여기서 코딩 시작
+});
+이렇게 기본틀을 만들고 사용한다.
+참고로 document, window, this는 jQuery에서 이미 만들어져있는 선택자이다. 
+그렇기에 ""를 넣거나 #을 넣는등 이상한 행동을 하지말고 $(this)이렇게만 작성하면 된다.
+
+
+
+
+/////////////////////////+++++++++++++++++++++++++++++++++++++
+사용방법 : $("태그명") //ex) $("p") : p태그를 찾는다 
+사용방법 : $("#id이름") //ex) $("#id") : id값이 id인 것을 찾는다 
+사용방법 : $(".클래스이름") //ex) $(".class") : 클래스가 class인 것을 찾는다
+"" 안에 태그명을 띄어쓰기로 나열하면 : "하위태그 중 어딘가" 라는 의미로써 >와는 조금다른 넓은범위의 느낌
+"" 안에 태그명을 >로 나열하면 : 직계자식 요소만을 선택하게 된다. 이것은 선택 범위를 좁혀서 더 구체적인 선택을 가능하게 한다.
+띄어쓰기와 > 의 차이를 정리해보자면 : 띄어쓰기를 사용하면 더 넓은 범위의 요소를 선택하게되고 >를 사용하면 더 정확한 선택이 가능하게된다.
+
+[]를 사용하면 요소의 속성을 선택할 수 있고 간단한 정규표현식도 사용할 수 있다.  ex) find("a[class='nowon']")
+속성들
+$ : 뒤의 글자 패턴과 같으면 선택
+* : 속성 안에 글자가 포함되어 있다면 선택
+^ : 앞의 글자 패턴과 같으면 선택  ex) $('[id^="loadingBar"]')
+~ : 속성 안에 글자가 정확히 포함되어 있으면 선택, 중복 불가
+= : 완전히 일치해야 선택  ex) find("a[class='nowon']")
+/////////////////////////////////-------------------------------
+
+
+
+
+
+////////////////////////////////+++++++++++++++++++++++++++
+var rowPerPage = $("#rowPerPage").find("a[class='nowon']").attr("value");
+
+$("#rowPerPage")
+// id가 rowPerPage것들중에 
+find("a[class='nowon']")
+// a태그에 있는 class="nowon"인것의 
+attr("value")
+// value값 찾아서 
+rowPerPage =
+// 변수 rowPerPage에 넣는다.
+//////////////////////////////----------------------------------------
+
+
+
+
+
+/////////////////////////////++++++++++++++++++++++++++++++++++++++
+$("#viewTab > li.nowon").not("#viewTab > .cntBTN, #viewTab > #vTable").trigger("click");
+
+$("#viewTab > li.nowon")
+// id값이 viewTab안에 li태그에있는 클래스명이 nowon인것에
+not("#viewTab > .cntBTN, #viewTab > #vTable")
+// id값이 viewTab인것 안에 클래스명이 cntBTN인 것과, id값이 viewTab인것 안에 id값이 vTable인것과 일치하지 않는
+trigger("click")
+// 것을 클릭할 때 이벤트
+//////////////////////////////----------------------------------------------
+
+
+
+
+
+////////////////////////////////////+++++++++++++++++++++++++++++++++++
+$("#test2").css("display", "none");
+
+$("#test2")
+// id값이 test2인것의
+css("display", "none")
+// style="display:none"을 삽입
+///////////////////////////////------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+///////////////////////////////+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+commonUtil.js
+이제 보여줄 방식은 현업에서 주로 많이 쓰는 공통js방식을 설명하려고 한다.
+공통 js방식은 미리 js에 함수를 설정해 놓으면 언제든지 꺼내 쓸 수 있는 방식이다.
+시간을 절약하거나 할때 쉽게 꺼내 사용할 수 있다.
+예시를 보여주겠다.
+
+	$.fn.openModelessPopup = function(subDir, popupID, title, width, height, param, resizable, scrollbar) {
+		// 여기에 팝업 창을 열기 위한 코드를 작성하면 된다.
+	}
+
+$.fn은 jQuery 프로토타입 객체를 나타낸다. jQuery에서 사용자 정의 플러그인을 만들 때 이 프로토타입 객체에 새로운 메소드를 추가할 수 있다.
+이렇게 추가된 메소드는 jQuery객체에서 호출할 수 있게 된다.
+따라서 $.fn.openModelessPopup은 openModelessPopup이라는 사용자정의 플러그인을 $.fn객체에 추가하는것을 나타낸다.
+이렇게하면 jQuery 선택자로 선택한 DOM요소에서 openModelessPopup함수를 호출할 수 있게 된다.
+밑에는 commonUtil.js에 있는 openModelessPopup메소드이다.
+
+그럼 다시 한줄한줄 설명해보겠다.
+
+$("#searchAll").bind( "click", function(event) {
+	$(this).openModelessPopup("rawlog", "logAllSearchResult", "", 770, 456, {}, true);
+});
+
+$("#searchAll")
+// id값이 searchAll인 것을
+bind( "click", function(event)
+// 클릭했을경우 일어나는 이벤트는
+$(this)
+// this(this는 위에서 호출했던 $("#searchAll")이다.)를
+openModelessPopup("rawlog", "logAllSearchResult", "", 770, 456, {}, true)
+// 보통 맨위에 선언해놓는<script src="파일경로/사용자정의함수.js">에 적혀 있는 js 파일에 $.fn.openModelessPopup을 찾아서 안에있는 값들을 그 메소드에 넣는다
+
+//////////////////////////////////////------------------------------------------------------------------
+
+
+
+
+///////////////////////////////
+$("#container #tree > .treeCon > ol > li > .T2DOL > .simpleli").not($hacsHH).removeClass("nowon");
+
+$("#container #tree > .treeCon > ol > li > .T2DOL > .simpleli")
+// container 아래에 있는 요소중에서 id값이 tree인 것의 자손클래스가 treeCon인것에 ol태그 안에 있는 li태그 안에있는 T2DOL클래스 안에있는 simpleli클래스와
+not($hacsHH)
+// 변수 $hacsHH와 일치하지 않는
+removeClass("nowon")
+// nowon이라는 클래스를 제거한다
+
+//////////////////////////////// 
+
+////////////////////////////////
+var $fl = $("#container #tree > .treeCon > #olTree li > .T2DOL").find("li.fl").filter(".nowon");
+
+$("#container #tree > .treeCon > #olTree li > .T2DOL")
+// container 아래에 있는 요소중에서 id값이 tree인 것의 자손클래스가 treeCon인것에 자손id가 olTree값인 것에 그 아래에 있는 li태그중 클래스명이 T2DOL인것에
+find("li.fl")
+// li태그중 클래스가 fl인 것을을 찾아
+filter(".nowon")
+// nowon클래스인것을 필터링해서 선택해라
+
+///////////////////////////////
+
+
+
+
+////////////////////////////////////+++++++++++++++++++++++++++++++++++++++++++
+$("#pageNavigation, #showTreeSearch").hide();
+
+// , 로 묶인경우
+$("#pageNavigation, #showTreeSearch")
+// id값이 pageNavigation인 것과 id값이 showTreeSearch것 둘다 
+hide()
+// 숨기기를 수행
+///////////////////////////////////----------------------------------------------
+
+
+
+
+/////////////////////////////////////+++++++++++++++++++++
+// 이걸 넣어야지 기본값이 0으로 세팅되고 같은화면에서 다시 시작해도 0부터 시작하게 된다!
+$('[id^="loadingBar"]').each(function() {
+    $(this).find('.progressing').css('width', '0%');
+});
+
+$('[id^="loadingBar"]').each(function()
+// id값이 loadingBar로 시작하는 것들
+each(function()
+// 각각 함수를 실행한다
+$(this)
+// this(여기서 this는 위에서 주어졌던 $('[id^="loadingBar"]')값이다.)와 일치하는
+find('.progressing')
+// 클래스이름이 progressing인것을 찾고
+css('width', '0%')
+// style="width:0%"으로 만들어라
+
+///////////////////////////////////////+++++++++++++++++++++
+$('#loadingBar2 .progressing').css('width', vv2 + '%');
+
+$('#loadingBar2 .progressing')
+// id값이 loadingBar2인 이거 안에 있는 클래스명이 progressing인 것의 
+css('width', vv2 + '%')
+// style="width:vvs%"으로 만들어라
+
+// 참고용 html
+<div>
+	<dl>
+		<dd>
+			<div class="prgBar" id="loadingBar1">
+				<div class="progressing" style="width:0%"></div>
+			</div>
+		</dd>
+		<dd>
+			<div class="prgBar" id="loadingBar2">
+				<div class="progressing"  style="width:0%"></div>
+			</div>
+		</dd>
+	</dl>
+</div>
+///////////////////////////////////////------------------------------------------
+
+
+///////////////////////////////////////+++++++++++++++++++++++++++++++++++++
+var criteria = JSON.parse(unescape(decodeURIComponent($select_table.attr("criteria"))));
+참고로 $select_table은 a태그를 찾는 변수다
+
+$select_table.attr("criteria")
+// 변수를 통해 선택된 a 태그의 "criteria" 속성 값을 가져오는 부분이다. 이것은 jQuery의 attr() 메서드를 사용하여 "criteria" 속성 값을 읽어온다. 이 값은 일반적으로 URI 인코딩되어 있다.
+decodeURIComponent()
+// 이 함수는 URI(Uniform Resource Identifier)컴포넌트를 디코딩합니다. 즉, URI 인코딩된 문자열을 원래의 형태로 디코딩합니다.
+// 예를 들어, URI에서 공백은 "%20"으로 인코딩된다. 이 함수를 사용하면 "%20"과 같은 인코딩된 문자열을 다시 공백으로 디코딩할 수 있다. 즉, 깔끔하게 나머지는 지운다고 볼 수 있다.
+// https%3A%2F%2Fwww.example.com%2Fpage%20with%20spaces ==> https://www.example.com/page with spaces
+unescape()
+// 이 함수는 문자열 내에서 이스케이프된 문자열을 원래 문자로 변환한다. 이 함수는 예전에 사용되던 방법이며, 현대에는 decodeURIComponent() 함수로 대체되어 사용 된다.
+// unescape()와 decodeURIComponent()를 두 번 중첩해서 사용하는 이유는 데이터의 변환과 해독 단계를 겹쳐 적용하여 안전한 JSON 데이터를 추출하기 위한 것이다. 이러한 중첩된 작업은 보안과 안정성을 확보하기 위한 조치로 사용된다.
+JSON.parse()
+// 이 함수는 문자열을 JSON 객체로 파싱(해석)한다. 즉, JSON 형식의 문자열을 JavaScript 객체로 변환한다.
+/////////////
+/////////////
+var table_name = $select_table.attr("table_name");
+
+$select_table
+// $select_table라는 변수의
+attr("table_name");
+// table_name속성값을 가져온다.
+/////////////
+/////////////
+var $selectThis = $(".fl > a[table_name="+table_name+"]").parent("li");
+
+$(".fl > a[table_name="+table_name+"]")
+// fl이라는 클래스 밑에 a태그에서 table_name이 입력받은table_name인 것들인 것에
+parent("li")
+// 부모 요소중에서 li태그를 선택해서
+var $selectThis =
+// $selectThis 변수에 집어 넣는다.
+///////////////////////////////////////------------------------------------------
+
+
+
+
+
+------------------------
