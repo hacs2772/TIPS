@@ -2146,13 +2146,13 @@ TIP
  	
 일단 animate의 다양한 기능에 대해서 설명하겠다.
 
-``$("div").animate({right: "250px"});``
+```$("div").animate({right: "250px"});```
 
 이걸사용해서 원하는 태그를 이동시킬 수 있다.
 
 혹시 여러개를 동시에 사용하고싶다면
 
-``$("div").animate({right: "250px", backgroundColor : "blue"});``
+```$("div").animate({right: "250px", backgroundColor : "blue"});```
 
 이렇게 , 로 묶으면된다.
 
@@ -2177,12 +2177,12 @@ CSS는 스타일과 기본 애니메이션을 관리하는 데 적합하지만 J
 
 예를들어 css를 사용하여 요소를 숨기는 코드는
 
-``$("div").css("display", "none");``
+```$("div").css("display", "none");```
 이다
 
 그리고 animate를 이용한 숨기는 코드는
 
-``$("div").fadeOut();``
+```$("div").fadeOut();```
 이다
 
 결과는 똑같이 숨기는건 맞지만 자세히 뜯어본다면 조금씩 차이가 있다.
