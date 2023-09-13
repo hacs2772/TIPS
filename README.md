@@ -1550,9 +1550,10 @@ bw.close();  // 출력 스트림 닫기
 ```
 처음에 말했지만 한두개 정도 출력이면 sysoutprint가 빠르겠지만 저렇게 대량의 출력을 요구하는경우 BufferedWriter가 월등하게 빠르다 (실제로 돌려보면 한번에 슥 빡!)
 
+
 이해를 돕고자 print와 buffer의 차이를 설명하자면
-**print는 10000개의 벽돌을 하나하나 옮긴다 생각하면 되고 
-buffer는 10000개의 벽돌을 한 지게에 짊어지고 한번에 옮긴다 생각하면 된다.**
+
+**print는 10000개의 벽돌을 하나하나 옮긴다 생각하면 되고 buffer는 10000개의 벽돌을 한 지게에 짊어지고 한번에 옮긴다 생각하면 된다.**
 
 출력은 같은데 시간에서 차이가 난다라... 이거야말고 컴퓨터 공학과 전공자라면 효율적이고 적절하게 쓸 수 있는 기회가 될것이라 생각한다
 
@@ -1618,7 +1619,9 @@ ctrl + v : 붙여넣기	//(위에꺼랑 짝꿍)
 ctrl + / or ctrl + shift + / or ctrl + shift + c : 주석 	//(주석은 정말 할말 이 많기 때문에 밑에서 추가로 설명하겠다.)
 
 ctrl + f  or  k : 페이지에서 찾기 or 드래그한 부분 찾기 	//(일단 단축키라 넣었는데 난 ctrl k를 거의 안쓴다 똑같이 드래그해서 찾는거면 원하는 지점 드래그 하고 ctrl f가 더편하기 때문이다.(왼손잡이면 ctrl k가 더 편할지도?) 
+
 그리고 ctrl f 에 추가기능이 있는데 아래 사진을 보면 우측 상단에 ctrl f 메뉴가 나오고 저기서 특정단어만 찾기 or 화살표를 눌러 찾은 단어 원하는 단어로 교체 하는 기능들이 있다.
+
 ![컨트롤에프 102930](https://github.com/hacs2772/TIPS/assets/107793142/4bf1934c-fead-4657-992b-02aa757ce5cc)
 
 
@@ -1642,22 +1645,30 @@ ctrl + shift + L : 이클립스 모든 단축키 보기 	//(혹이 이런 단축
 
 
 
-**특정상황에서의 단축키
+**특정상황에서의 단축키**
+
 sysout + ctrl + space : System.out.println();이 자동 입력된다. //(자바에서 콘솔 찍을때 많이 사용한다. 진짜 많이 사용한다.)
+
 ![컨쉬5652](https://github.com/hacs2772/TIPS/assets/107793142/22db2541-dcd0-47bc-84ca-2809b2c9c136)
+
 사진처럼 원하는 항목을 선택하여 자동완성을 시킬 수 있다.
 
 특정함수 + ctrl + space : 특정함수 자동완성	//(매우 유용하다)
 
 아까 단축키 파트에서 길게 말할거 같아서 못말했던 주석에대해 말해보겠다.
-주석은 정말 할말 많다. 왜냐하면 나같은 풀스택 개발자라면 뷰부터 쿼리까지 xml js jsp java css 등등 여러 파일들을 정신없이 이동하면서 코딩을 하게 되는데 그러면 확장자마다 주석 단축키가 다르다. 이걸또 커스텀으로 통일하자니 너무 많은걸 만지는거 같고 물론 귀찮음이 제일 컸지만 내가 경험한 바로는 무조건 저 3가지 단축키중
+
+주석은 정말 할말 많다. 
+
+왜냐하면 나같은 풀스택 개발자라면 뷰부터 쿼리까지 xml js jsp java css 등등 여러 파일들을 정신없이 이동하면서 코딩을 하게 되는데 그러면 확장자마다 주석 단축키가 다르다. 이걸또 커스텀으로 통일하자니 너무 많은걸 만지는거 같고 물론 귀찮음이 제일 컸지만 내가 경험한 바로는 무조건 저 3가지 단축키중
+
 하나는 주석 단축키라는 것이다. 그렇기에 주석을 쓰는경우가 매우 많을텐데 걍 고민하지말고 ctrl + shift + c부터 눌러보자(그리구 왼손으로 한번에 딱 할수도 있자너)
 
 
 
-
 자 단축키가 어느정도 손에 익기도 했고 코딩을하면서 이런건 단축키가 없나? 라고 생각이 들때가 있다. 
+
 그러한 경우 단축키가 지정이 안되있거나 어렵게 설정됐을 수 도 있다.
+
 그러면 그걸 내가 원하는 단축키로 설정할 수 없을까??
 
 당연히 있다! 바로 단축키 커스텀 이다!
@@ -1678,31 +1689,44 @@ When은 언제 단축키가 실행될까이다. 아까말했던 주석이 파일
 
 ------------------------
 ## ⚠⚠ jQuery 기초 및 사용방법
+
 일단 여기서 설명할 방법은 다양한 예시를 보여주고 한줄한줄 풀어보면서 설명할 예정이다
+
 왜냐하면 나는 공부할때 개념보단 문제를 먼저 보기 때문이다
+
 쌩판 모르는 문제이지만 어떤것인지 예시를통해 추측하고 파악하는 케이스라 
+
 jQuery는 무엇무엇이다! 라고 말하는 기존 다른 블로그와는 다를것이다. 
+
 처음엔 간단한 사용방법만 알려주고 예시를 읽어가면서 어떻게 쓰이는구나 이런식으로 사용해야하는구나 하고 깨달아갔으면 좋겠다.(스스로 예시보고 사용방법보고 왓다갔다 해보자)
 
+
 일단 jQuery는 반드시 기본 틀 안에서 작성해야한다.
+
 예를들어
+
+```
 $(document).ready(function(){ 	
 	// 여기서 코딩 시작
 });
+```
+
 이렇게 기본틀을 만들고 사용한다.
+
 참고로 document, window, this는 jQuery에서 이미 만들어져있는 선택자이다. 
+
 그렇기에 ""를 넣거나 #을 넣는등 이상한 행동을 하지말고 $(this)이렇게만 작성하면 된다.
 
 
 
-
-/////////////////////////+++++++++++++++++++++++++++++++++++++
+```
 사용방법 : $("태그명") //ex) $("p") : p태그를 찾는다 
 사용방법 : $("#id이름") //ex) $("#id") : id값이 id인 것을 찾는다 
 사용방법 : $(".클래스이름") //ex) $(".class") : 클래스가 class인 것을 찾는다
 "" 안에 태그명을 띄어쓰기로 나열하면 : "하위태그 중 어딘가" 라는 의미로써 >와는 조금다른 넓은범위의 느낌
 "" 안에 태그명을 >로 나열하면 : 직계자식 요소만을 선택하게 된다. 이것은 선택 범위를 좁혀서 더 구체적인 선택을 가능하게 한다.
 띄어쓰기와 > 의 차이를 정리해보자면 : 띄어쓰기를 사용하면 더 넓은 범위의 요소를 선택하게되고 >를 사용하면 더 정확한 선택이 가능하게된다.
+
 
 []를 사용하면 요소의 속성을 선택할 수 있고 간단한 정규표현식도 사용할 수 있다.  ex) find("a[class='nowon']")
 속성들
@@ -1711,166 +1735,202 @@ $ : 뒤의 글자 패턴과 같으면 선택
 ^ : 앞의 글자 패턴과 같으면 선택  ex) $('[id^="loadingBar"]')
 ~ : 속성 안에 글자가 정확히 포함되어 있으면 선택, 중복 불가
 = : 완전히 일치해야 선택  ex) find("a[class='nowon']")
-/////////////////////////////////-------------------------------
+```
 
 
+``var rowPerPage = $("#rowPerPage").find("a[class='nowon']").attr("value");``
 
-
-
-////////////////////////////////+++++++++++++++++++++++++++
-var rowPerPage = $("#rowPerPage").find("a[class='nowon']").attr("value");
 
 $("#rowPerPage")
+
 // id가 rowPerPage것들중에 
+
 find("a[class='nowon']")
+
 // a태그에 있는 class="nowon"인것의 
+
 attr("value")
+
 // value값 찾아서 
+
 rowPerPage =
+
 // 변수 rowPerPage에 넣는다.
-//////////////////////////////----------------------------------------
 
 
 
+``$("#viewTab > li.nowon").not("#viewTab > .cntBTN, #viewTab > #vTable").trigger("click");``
 
-
-/////////////////////////////++++++++++++++++++++++++++++++++++++++
-$("#viewTab > li.nowon").not("#viewTab > .cntBTN, #viewTab > #vTable").trigger("click");
 
 $("#viewTab > li.nowon")
+
 // id값이 viewTab안에 li태그에있는 클래스명이 nowon인것에
+
 not("#viewTab > .cntBTN, #viewTab > #vTable")
+
 // id값이 viewTab인것 안에 클래스명이 cntBTN인 것과, id값이 viewTab인것 안에 id값이 vTable인것과 일치하지 않는
+
 trigger("click")
+
 // 것을 클릭할 때 이벤트
-//////////////////////////////----------------------------------------------
 
 
 
+``$("#test2").css("display", "none");``
 
-
-////////////////////////////////////+++++++++++++++++++++++++++++++++++
-$("#test2").css("display", "none");
 
 $("#test2")
+
 // id값이 test2인것의
+
 css("display", "none")
+
 // style="display:none"을 삽입
-///////////////////////////////------------------------------------------
 
 
 
-
-
-
-
-
-
-
-
-///////////////////////////////+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 commonUtil.js
+
 이제 보여줄 방식은 현업에서 주로 많이 쓰는 공통js방식을 설명하려고 한다.
+
 공통 js방식은 미리 js에 함수를 설정해 놓으면 언제든지 꺼내 쓸 수 있는 방식이다.
+
 시간을 절약하거나 할때 쉽게 꺼내 사용할 수 있다.
+
 예시를 보여주겠다.
 
-	$.fn.openModelessPopup = function(subDir, popupID, title, width, height, param, resizable, scrollbar) {
-		// 여기에 팝업 창을 열기 위한 코드를 작성하면 된다.
-	}
+```
+$.fn.openModelessPopup = function(subDir, popupID, title, width, height, param, resizable, scrollbar) {
+	// 여기에 팝업 창을 열기 위한 코드를 작성하면 된다.
+}
+```
 
 $.fn은 jQuery 프로토타입 객체를 나타낸다. jQuery에서 사용자 정의 플러그인을 만들 때 이 프로토타입 객체에 새로운 메소드를 추가할 수 있다.
+
 이렇게 추가된 메소드는 jQuery객체에서 호출할 수 있게 된다.
+
 따라서 $.fn.openModelessPopup은 openModelessPopup이라는 사용자정의 플러그인을 $.fn객체에 추가하는것을 나타낸다.
+
 이렇게하면 jQuery 선택자로 선택한 DOM요소에서 openModelessPopup함수를 호출할 수 있게 된다.
+
 밑에는 commonUtil.js에 있는 openModelessPopup메소드이다.
+
+
 
 그럼 다시 한줄한줄 설명해보겠다.
 
+```
 $("#searchAll").bind( "click", function(event) {
 	$(this).openModelessPopup("rawlog", "logAllSearchResult", "", 770, 456, {}, true);
 });
+```
 
 $("#searchAll")
+
 // id값이 searchAll인 것을
+
 bind( "click", function(event)
+
 // 클릭했을경우 일어나는 이벤트는
+
 $(this)
+
 // this(this는 위에서 호출했던 $("#searchAll")이다.)를
+
 openModelessPopup("rawlog", "logAllSearchResult", "", 770, 456, {}, true)
+
 // 보통 맨위에 선언해놓는<script src="파일경로/사용자정의함수.js">에 적혀 있는 js 파일에 $.fn.openModelessPopup을 찾아서 안에있는 값들을 그 메소드에 넣는다
 
-//////////////////////////////////////------------------------------------------------------------------
 
 
-
-
-///////////////////////////////
-$("#container #tree > .treeCon > ol > li > .T2DOL > .simpleli").not($hacsHH).removeClass("nowon");
+``$("#container #tree > .treeCon > ol > li > .T2DOL > .simpleli").not($hacsHH).removeClass("nowon");``
 
 $("#container #tree > .treeCon > ol > li > .T2DOL > .simpleli")
+
 // container 아래에 있는 요소중에서 id값이 tree인 것의 자손클래스가 treeCon인것에 ol태그 안에 있는 li태그 안에있는 T2DOL클래스 안에있는 simpleli클래스와
+
 not($hacsHH)
+
 // 변수 $hacsHH와 일치하지 않는
+
 removeClass("nowon")
+
 // nowon이라는 클래스를 제거한다
 
-//////////////////////////////// 
 
-////////////////////////////////
-var $fl = $("#container #tree > .treeCon > #olTree li > .T2DOL").find("li.fl").filter(".nowon");
+
+``var $fl = $("#container #tree > .treeCon > #olTree li > .T2DOL").find("li.fl").filter(".nowon");``
 
 $("#container #tree > .treeCon > #olTree li > .T2DOL")
+
 // container 아래에 있는 요소중에서 id값이 tree인 것의 자손클래스가 treeCon인것에 자손id가 olTree값인 것에 그 아래에 있는 li태그중 클래스명이 T2DOL인것에
+
 find("li.fl")
+
 // li태그중 클래스가 fl인 것을을 찾아
+
 filter(".nowon")
+
 // nowon클래스인것을 필터링해서 선택해라
 
-///////////////////////////////
 
 
+``$("#pageNavigation, #showTreeSearch").hide();``
 
-
-////////////////////////////////////+++++++++++++++++++++++++++++++++++++++++++
-$("#pageNavigation, #showTreeSearch").hide();
 
 // , 로 묶인경우
+
 $("#pageNavigation, #showTreeSearch")
+
 // id값이 pageNavigation인 것과 id값이 showTreeSearch것 둘다 
+
 hide()
+
 // 숨기기를 수행
-///////////////////////////////////----------------------------------------------
 
 
 
-
-/////////////////////////////////////+++++++++++++++++++++
-// 이걸 넣어야지 기본값이 0으로 세팅되고 같은화면에서 다시 시작해도 0부터 시작하게 된다!
+```
 $('[id^="loadingBar"]').each(function() {
     $(this).find('.progressing').css('width', '0%');
 });
+```
 
 $('[id^="loadingBar"]').each(function()
+
 // id값이 loadingBar로 시작하는 것들
+
 each(function()
+
 // 각각 함수를 실행한다
+
 $(this)
+
 // this(여기서 this는 위에서 주어졌던 $('[id^="loadingBar"]')값이다.)와 일치하는
+
 find('.progressing')
+
 // 클래스이름이 progressing인것을 찾고
+
 css('width', '0%')
+
 // style="width:0%"으로 만들어라
 
-///////////////////////////////////////+++++++++++++++++++++
-$('#loadingBar2 .progressing').css('width', vv2 + '%');
+
+``$('#loadingBar2 .progressing').css('width', vv2 + '%');``
 
 $('#loadingBar2 .progressing')
+
 // id값이 loadingBar2인 이거 안에 있는 클래스명이 progressing인 것의 
+
 css('width', vv2 + '%')
+
 // style="width:vvs%"으로 만들어라
 
-// 참고용 html
+
+참고용 html
+
+```
 <div>
 	<dl>
 		<dd>
@@ -1885,93 +1945,140 @@ css('width', vv2 + '%')
 		</dd>
 	</dl>
 </div>
-///////////////////////////////////////------------------------------------------
+```
 
+``var criteria = JSON.parse(unescape(decodeURIComponent($select_table.attr("criteria"))));``
 
-///////////////////////////////////////+++++++++++++++++++++++++++++++++++++
-var criteria = JSON.parse(unescape(decodeURIComponent($select_table.attr("criteria"))));
 참고로 $select_table은 a태그를 찾는 변수다
 
 $select_table.attr("criteria")
+
 // 변수를 통해 선택된 a 태그의 "criteria" 속성 값을 가져오는 부분이다. 이것은 jQuery의 attr() 메서드를 사용하여 "criteria" 속성 값을 읽어온다. 이 값은 일반적으로 URI 인코딩되어 있다.
+
 decodeURIComponent()
+
 // 이 함수는 URI(Uniform Resource Identifier)컴포넌트를 디코딩합니다. 즉, URI 인코딩된 문자열을 원래의 형태로 디코딩합니다.
+
 // 예를 들어, URI에서 공백은 "%20"으로 인코딩된다. 이 함수를 사용하면 "%20"과 같은 인코딩된 문자열을 다시 공백으로 디코딩할 수 있다. 즉, 깔끔하게 나머지는 지운다고 볼 수 있다.
+
 // https%3A%2F%2Fwww.example.com%2Fpage%20with%20spaces ==> https://www.example.com/page with spaces
+
 unescape()
+
 // 이 함수는 문자열 내에서 이스케이프된 문자열을 원래 문자로 변환한다. 이 함수는 예전에 사용되던 방법이며, 현대에는 decodeURIComponent() 함수로 대체되어 사용 된다.
+
 // unescape()와 decodeURIComponent()를 두 번 중첩해서 사용하는 이유는 데이터의 변환과 해독 단계를 겹쳐 적용하여 안전한 JSON 데이터를 추출하기 위한 것이다. 이러한 중첩된 작업은 보안과 안정성을 확보하기 위한 조치로 사용된다.
+
 JSON.parse()
+
 // 이 함수는 문자열을 JSON 객체로 파싱(해석)한다. 즉, JSON 형식의 문자열을 JavaScript 객체로 변환한다.
-/////////////
-/////////////
-var table_name = $select_table.attr("table_name");
+
+
+``var table_name = $select_table.attr("table_name");``
 
 $select_table
+
 // $select_table라는 변수의
+
 attr("table_name");
+
 // table_name속성값을 가져온다.
-/////////////
-/////////////
-var $selectThis = $(".fl > a[table_name="+table_name+"]").parent("li");
+
+
+
+``var $selectThis = $(".fl > a[table_name="+table_name+"]").parent("li");``
 
 $(".fl > a[table_name="+table_name+"]")
+
 // fl이라는 클래스 밑에 a태그에서 table_name이 입력받은table_name인 것들인 것에
+
 parent("li")
+
 // 부모 요소중에서 li태그를 선택해서
+
 var $selectThis =
+
 // $selectThis 변수에 집어 넣는다.
-///////////////////////////////////////------------------------------------------
 
 ------------------------
 ## ⚠⚠ jQuery hide, show, toggle
 
 숨기고 보이는 방법은 어렵지 않다 먼저 예시를 보여주겠다
-// $("#hacs").hide();
-// $("#hacs").show();
+
+``$("#hacs").hide();``
+
+``$("#hacs").show();``
+
 id값이 hacs인것을 숨기고 보여주는 예시이다.
 
 '아흐 그러면 숨기고 보일때마다 버튼 2개만들어서 숨기는 버튼 보여주는 버튼 2개나 만들어야해??'
+
 아니다 버튼하나로 끝낼 수 있다.
+
 그 기능이 바로 toggle이벤트이다
+
 예시먼저 보여주겠다.
-// $("#hacs").toggle();
+
+``$("#hacs").toggle();``
+
 이것을 걸어주게되면 id값이 hacs라는게 숨겨져 있으면 hide가 되는거고 hide가 되어있으면 show를 해주는거다
+
 이것도 상황에 따라 쓰이는곳이 다를 수 있으니 적절하게 활용해야한다.
 
 그럼 저 hide와 show오른쪽에 ()는 무슨 역할을 수행할까??
+
 바로 '속도'이다 여기에 들어갈 것은 
+
 fast nomal slow가 있는데 직적 수행해 보면 알겠지만 
+
 slow를 걸경우 뭔가 빨려들어가듯이 느리게 사라지고
+
 fast를 걸경우 순식간에 슥하고 사라지는것을 볼 수 있다.
+
 이건 상황에 따라 적절히 사용하면 될 듯하다. 
+
 (참고로 디폴트 값은 nomal이 걸려있다.)
 
-// $("#hacs").fadeOut();
+``$("#hacs").fadeOut();``
+
 fadeOut(반드시o를 대문자O로 해야함)이벤트는 말그대로 서서히 사라지는 이벤트이다
+
 직업 수행해보면 잘 모를수도 있지만 fadeOut("slow");를 해보면 점점 희미해지면서 사라지는걸 볼 수 있다.(=opacity(투명도)가 점점 0으로 향하다가 hide가 된다=빈칸이 존재하지 않음)
 
-// $("#hacs").fadeTo("slow",0.5);
+``$("#hacs").fadeTo("slow",0.5);``
+
 fadeTo는 말그대로 점차 사라진다 어디까지~ 라는 말이다
+
 그렇기에 fateTo("속도", 원하는 수치);를 걸어주게 된다면 원하는 수치까지 사라지게 되는것이다.
+
 예시에 나온것처럼 0.5를 걸어주게 된다면 opacity가 0.5까지 투명해 진다 사라지진 않음(hide가 되지 않음으로 빈칸은 존재한다)
 
-// $("#hacs").fadeToggle(500);
+``$("#hacs").fadeToggle(500);``
+
 fade in out도 있으니 toggle도 당연 있다.
+
 이 이벤트는 in이 되어있다면 out을 out이 되어있다면 in을 수행하는 toggle이벤트 이다
+
 그다음으로 나오는 숫자는 사라지거나 나타나는 속도이다
+
 속도는 미리세컨드이기에 예시처럼 500이면 0.5초만에 사라지거나 사라진다.
 
-// $("#hacs").slideUp();
-// $("#hacs").slideDown();
-// $("#hacs").slideToggle();
+``$("#hacs").slideUp();``
+
+``$("#hacs").slideDown();``
+
+``$("#hacs").slideToggle();``
+
 slide이벤트는 마치 엘리베이터가 상하로 열리거나 닫히는것처럼 사라졌다 나왔다 하는 이벤트 이다
+
 up down toggle은 위에서 계속 설명했던 보이기 숨기기 보이기숨기기토글방식 이렇게 이다.(비슷해서 설명하기도 귀찮...)
 
 이러한 이벤트 말고도 animate stop.. 등등 제이쿼리에서 제공하는 다양한 이벤트 들이 많다
+
 그것들은 상황에 따라 찾아보면서 익히는게 더 효율적이다(너무나도 방대하게 많기때문에)
 
 하지만 앞서 말한것들은 어떠한 이벤트를 걸어주지 원하는 상황에 스스로 수행시키기엔 어렵다.
+
 그렇기에 특정 상황에 발동되게 하기 위해선 이벤트를 걸어줘야한다.
 
 다음파트에는 특정 상황에 발동되게 할 수 있는 '이벤트 핸들러'를 거는방법을 설명하겠다.
@@ -1979,36 +2086,58 @@ up down toggle은 위에서 계속 설명했던 보이기 숨기기 보이기숨
 ------------------------
 ## ⚠⚠ jQuery 이벤트 핸들러
 
+```
 $("#hacs")._____(function(){
 	$(this).show();
 });
+```
 
 click  :  클릭시 일어나는 이벤트
-		추가로 $("#hacs").on("click", function(){
-				$(this).show();
-			});
-		이것도 동일한 작업을 수행한다.
-		하지만 더 읽기 쉽고 작업하기 편한 구문을 선택해야할텐데 일반적으론 on을 사용하지 않고 바로 click이벤트를 처리하는게 더 간결하고 보기가 쉽다.
+
+추가로 
+```
+$("#hacs").on("click", function(){
+	$(this).show();
+});
+```
+이것도 동일한 작업을 수행한다.
+
+하지만 더 읽기 쉽고 작업하기 편한 구문을 선택해야할텐데 일반적으론 on을 사용하지 않고 바로 click이벤트를 처리하는게 더 간결하고 보기가 쉽다.
 
 dblclick  :  더블클릭시 일어나는 이벤트
+
 keypress  :  키보드 눌렀을 경우 일어나는 이벤트(input박스에 실험해보면 이벤트가 발생하고 키입력이 된다.)
+
 mouseenter  :  마우스 올려놨을때 일어나는 이벤트(마우스 오버느낌(미리보기볼때 이런느낀이다))
+
 mouseleave  :  마우스를 떼었을때 일어나는 이벤트
+
 hover  :  마우스를 올려놨을때 + 마우스를 떼었을때 일어나는 이벤트(mouseenter + mouseleave)
-	hover이벤트를 사용하기 위해선 위에 예시처럼 넣으면 아무일도 벌어지지 않는다 hover예시를 보여주겠다.
+
+hover이벤트를 사용하기 위해선 위에 예시처럼 넣으면 아무일도 벌어지지 않는다 hover예시를 보여주겠다.
+ 
+ ```
 		$("#hacstest").hover(function() {
 			console.log("11");
 		},
 		function() {
 			console.log("22");
 		});
-	hover는 마우스를 올렸을때랑 땟을때 이벤트 2가지를 동시에 수행하기에(마치 숨기기 떼기 2개를하는 toggle이벤트와 비슷)
-	이렇게 function을 2개 걸어줘야한다.(반드시는 아님 1개 써도 된다)
-	저렇게하면 결과가 마우스를 올렸을때 콘솔에 11이 나오게 되고 떼었을때 22가 출력되게 된다.
-	
+  ```
+
+hover는 마우스를 올렸을때랑 땟을때 이벤트 2가지를 동시에 수행하기에(마치 숨기기 떼기 2개를하는 toggle이벤트와 비슷)
+
+이렇게 function을 2개 걸어줘야한다.(반드시는 아님 1개 써도 된다)
+
+저렇게하면 결과가 마우스를 올렸을때 콘솔에 11이 나오게 되고 떼었을때 22가 출력되게 된다.
+
+ 
 TIP
+
 사실 아까 click할때 쓰려 했지만 hover까지 배우고 설명하는게 좋다라는 판단에 이렇게 써본다
+
 사실 click이벤트도 hover이벤트랑 매우 유사하다. 왜냐하면 click이벤트도 mousedown + mouseup이 합친 이벤트 이기때문이다.(mousedown=마우스를 누르고있는상태, mouseup= 마우스를 뗏을경우)
+
 고로 어렵게 생각하지말고 hover = click, mouseenter=mousedown, mouseleave=mouseup이라고 생각하면된다 (딸깍만 안누르는 차이)
 	
 	
@@ -2017,47 +2146,178 @@ TIP
  	
 일단 animate의 다양한 기능에 대해서 설명하겠다.
 
-// $("div").animate({right: "250px"});
+``$("div").animate({right: "250px"});``
+
 이걸사용해서 원하는 태그를 이동시킬 수 있다.
+
 혹시 여러개를 동시에 사용하고싶다면
-// $("div").animate({right: "250px", backgroundColor : "blue"});
+
+``$("div").animate({right: "250px", backgroundColor : "blue"});``
+
 이렇게 , 로 묶으면된다.
 
 right말고도 opacity, width, height, backgroundColor 등등 다양한 기능을 사용할 수 있다.(양이 방대하니 필요할때 원하는 기능을 즉각적으로 찾아보길 바란다)
 
 그러면 의문점이 들것이다. 
+
 과연 animate는 언제 사용할까?
+
 css를 변경하려면 animate말고도 .css();를 이용하여 변경할 수 도 있다 
+
 쪼금 딥하게 들어간다면 CSS 명령을 통해 CSS 속성을 직접 변경하는 것이 CSS 애니메이션이 브라우저에 의해 하드웨어 가속될 수 있기 때문에 성능이 더 좋은 경우가 많다. 
+
 이는 특히 모바일 장치에서 더 부드러운 애니메이션으로 이어질 수 있다. 
+
 그리고 프레젠테이션(스타일링 및 애니메이션)을 JavaScript(jQuery)와 분리하여 유지하는것이 좀더 좋은 웹 개발 사례에 따르므로 코드를 더욱 체계화하고 유지 관리하기 쉽게 만든다.
+
 CSS는 스타일과 기본 애니메이션을 관리하는 데 적합하지만 JavaScript는 동적 동작, 사용자 상호 작용, 로직이나 실시간 데이터 업데이트가 포함될 수 있는 복잡한 애니메이션을 처리하는 데 필수적이다.
 
 
 그럼 다시 좀더 시각적인 차이는 무엇이 있을까?
 
 예를들어 css를 사용하여 요소를 숨기는 코드는
-//$("div").css("display", "none");
+
+``$("div").css("display", "none");``
 이다
+
 그리고 animate를 이용한 숨기는 코드는
-//$("div").fadeOut();
+
+``$("div").fadeOut();``
 이다
 
 결과는 똑같이 숨기는건 맞지만 자세히 뜯어본다면 조금씩 차이가 있다.
+
 css는 선택된 <div> 요소의 display 속성을 즉시 "none"으로 설정한다.
+
 즉, 이는 이 코드가 실행되자마자 요소가 보이지 않게 되고 레이아웃의 어떤 공간도 차지하지 않는다는 것을 의미한다는 말이다
 
 다만 animate는
+
 지정된 기간(기본값은 400밀리초) 동안 요소의 '불투명도'를 현재 값(일반적으로 1 또는 표시)에서 0으로 점진적으로 줄인 뒤
+
 애니메이션이 완료된 후 'display' 속성이 'none'으로 설정되어 해당 요소가 더 이상 레이아웃에서 공간을 차지하지 않게 되는 것이다.
 
 말그대로 animate는 애니메이션을 보여주고 사라지고 css는 그즉시 사라진다는점이다.
+
 결국 이 둘의 선택은 각자의 만들고싶어하는 방향성과 분위기 목적을 파악하여 상황에 맞게 사용해야한다.
+
 예를들어 중요한 자리에서 정확한 정보를 전달해야하는 차트같은거를 보여줄때는 css를
+
 좀더 사용자에게 친숙하게 다가가야하는 상황에서 사진같은것을 보여줄 때는 animate 사용할 수 있을 거 같다.(심플,깔끔 vs 화려함,친숙)
 
+
 animate를 사용하는 경우에는 css를 좀더 동적으로 사용하고 싶은 경우가 많다.
-	
+
+------------------------
+## ⚠⚠ jQuery 기초 및 사용방법 part.5 text,append,prepend,before,after
+
+바로 설명 시작하겠다.
+
+
+원하는 문자는 text, append, prepend, before, after를 써서 나오게 할 수 있다
+
+사용방법은 jQuery 기초 및 사용방법 part.2를 보고오시면 된다.(글 하단에 링크있다)
+
+하나하나 기초적인 부분부터 설명하면
+
+
+text를 사용하면 기존에 있던 값에다가 '덮어씌우게'된다.
+
+append를 사용하면 text와는 달리 기존에 입력되어있던걸 '유지'한 채 '우측에' 주가로 삽입하게 된다.(부모요소 마지막에)
+
+prepend를 사용하면 기존에 입력되어있던걸 '유지'한 채 '좌측에' 주가로 삽입하게 된다.(부모요소 맨앞에)
+
+before를 사용하면 기존에 입력되어있던걸 '유지'한 채 '위쪽에' 주가로 삽입하게 된다.(요소에 자식이 되지 않고 그 전으로 나옴)
+
+after를 사용하면 기존에 입력되어있던걸 '유지'한 채 '아래에' 주가로 삽입하게 된다.(요소에 자식이 되지 않고 그 다음으로 나옴)
+
+자 기초적인건 끝났다 대충 text값만 집어넣고 싶은신 분들이라면 여기까지만 읽고 나가도 된다.
+
+하지만 여기서 좀더 디테일 하게 들어간다면 말이 달라진다
+
+가시적으로 본다면 어디 옆에나온다 어디 뒤에나온다 이렇게 말할 수 있겠지만 
+
+이렇게 이해하면 css나 다른 동적인 요소를 줄때 상당한 오류가 나올 수 있다.
+
+설명은 text -> append,prepend -> befor,after 이 순서대로 차근차근 설명해보겠다.
+
+먼저 기본화면이다.
+
+![0](https://github.com/hacs2772/TIPS/assets/107793142/179d1c9e-c55c-4495-83f0-885ffcf4cc43)
+
+![0_1](https://github.com/hacs2772/TIPS/assets/107793142/c369927b-eaa9-4d64-a5c2-87166ba0c362)
+
+
+
+// text
+
+앞서 말했듯이 text는 안에있는 값을 덮어씌운다 
+
+먼저 내가짠 jQuery와 html부분을 보여주겠다.
+
+![1](https://github.com/hacs2772/TIPS/assets/107793142/fa135694-f71b-469d-ac90-e17f2d5efd78)
+
+![2](https://github.com/hacs2772/TIPS/assets/107793142/313010aa-ba15-4594-a16b-28c9eb3fb3a4)
+
+이대로 실행하게된다면 html에 작성했던"안녕하세요 학스입니다"는 지워지고 "text"가 덮어씌워질 것이다.
+
+밑에는 결과화면이다
+
+![3](https://github.com/hacs2772/TIPS/assets/107793142/58e6e965-d852-42d2-949c-b49ef61dfb98)
+
+![4](https://github.com/hacs2772/TIPS/assets/107793142/c5514510-166e-4b5c-989c-8004bde94377)
+
+
+만약아래 사진처럼 text를 마지막에 명령한다면? 
+
+![5](https://github.com/hacs2772/TIPS/assets/107793142/795e3571-89b5-4f51-a853-b895d7dd1a69)
+
+당연하듯이 코드는 위에서 아래로 흐르고 text는 덮어씌운다 했기때문에 결과는 아래 사진처럼 나오게 된다
+
+![6](https://github.com/hacs2772/TIPS/assets/107793142/d41f92d5-6c3c-47f6-953d-2b491985925e)
+
+![7](https://github.com/hacs2772/TIPS/assets/107793142/c132774e-a681-487f-860d-7222fec6a58a)
+
+
+css(Cascading Style Sheet) 캐스케이딩 원리(폭포수)처럼  
+
+마지막에 선언된게 갑이 된다는 것이다.
+
+
+// append,prepend vs after,before
+
+아까 실행사진에서 대충 눈치 챘을수도 있지만 모른척 해주시고 설명 시작하겠다
+
+append와 prepend는 태그나, id등 앞뒤에 오게하는 이벤트이다
+
+"어? after befor가 앞뒤 아님?"
+
+맞다 
+
+둘아 앞뒤에 오지만 가장 큰 차이는 
+
+부모요소 안에서 앞뒤냐 아니면 부모요소 밖에서 앞뒤냐의 차이다
+
+"그래서 그게 큰 차이가 있나?"
+
+있다
+
+밑에 사진을 보면서 설명해 주겠다(복잡함을 덜하기위해 text이벤트는 제거했다)
+
+
+![9](https://github.com/hacs2772/TIPS/assets/107793142/8d852675-e172-42c5-b1e6-3d1b02a1a77f)
+
+![8](https://github.com/hacs2772/TIPS/assets/107793142/97c80023-20eb-4f5c-83ed-723f78c0dc2c)
+
+
+이제 무슨 차이인지 이해가 되는가?
+
+눈에 확 띄듯이 append와 prepend는 부모요소 안에 있기에 그 요소에 부여된 스타일까지 다 가져가는 모습이고
+
+그에반해 after와 before는 부모요소 밖에 있기에 그 요소에 뭐가 부여됐던지 상관없이 부모요소 밖 앞뒤로 붙는다는 점이다.
+
+이런 디테일은 추후 그리드를 만들거나 이미지를 삽입하거나할때 중요한 요소로 작용될 수 있으니 반드시 인지하고 넘어갔으면 한다.
+
 ------------------------
 ## ⚠⚠ jQuery 태그
 
