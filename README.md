@@ -1492,6 +1492,23 @@ MySQL
 DATE_FORMAT(a.action_time,'%Y-%m-%d %H:%i:%s')
 ```
 
+**REGEXP**
+
+오라클
+```
+REGEXP_LIKE(your_column, 'your_pattern')
+```
+
+MySQL
+```
+your_column REGEXP 'your_pattern'
+```
+
+postgreSQL
+```
+your_column ~ 'your_pattern'
+```
+
 ------------------------
 ## ⚠⚠ 화면단위 css 및 html 수정 tip
 평소에 웹을 만들면서 f12를 눌러 개발자 창에서 콘솔창만 보거나 했는데 사실 여기엔 엄청난 장점들이 많다 특히 
