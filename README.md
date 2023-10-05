@@ -104,6 +104,8 @@ Apply and Close 클
 3. 마지막으로 properties에서 targeted runtimes를 apply and test 해본다. 버전을 확인하면서(확인 절차)<br>
 4. Project facets에서도 버전 확인(확인 절차)<br>
 
+**자바 컴파일러는 보통 1.7버전으로 한다**
+
 ------------------------
 ## ⚠⚠ 버전을 맞춘 뒤 :
 
