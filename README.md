@@ -1511,6 +1511,29 @@ postgreSQL
 your_column ~ 'your_pattern'
 ```
 
+**데이터 형식 변환 EX)00000000000 -> 000-0000-0000**
+
+MySQL
+```
+SELECT CONCAT(
+    SUBSTRING(phone_number, 1, 3),
+    '-',
+    SUBSTRING(phone_number, 4, 4),
+    '-',
+    SUBSTRING(phone_number, 8)
+) AS formatted_phone_number
+FROM your_table;
+```
+
+postgreSQL
+```
+SELECT
+    SUBSTRING(phone_number FROM 1 FOR 3) || '-' ||
+    SUBSTRING(phone_number FROM 4 FOR 4) || '-' ||
+    SUBSTRING(phone_number FROM 8) AS formatted_phone_number
+FROM your_table;
+```
+
 ------------------------
 ## ⚠⚠ 화면단위 css 및 html 수정 tip
 평소에 웹을 만들면서 f12를 눌러 개발자 창에서 콘솔창만 보거나 했는데 사실 여기엔 엄청난 장점들이 많다 특히 
