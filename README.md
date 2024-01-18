@@ -1534,6 +1534,46 @@ SELECT
 FROM your_table;
 ```
 
+**COUNT와 DATE**
+MySQL
+```
+카운트를 할경우 굳이 SELECT에서 보여주는 컬럼수와 GROUP BY로 모두 묵어줄 필요가 없다
+
+   		SELECT
+   			A_col, B_col, count(A_col) as cnt, C_col
+   		FROM
+   			HACS_TABLE
+   		WHERE
+   			B_col = #{B_col}
+   			and HACSdate between #{fromDate} AND #{toDate}
+   		GROUP BY A_col, B_col, C_col
+```
+postgreSQL
+```
+카운트를 할경우 SELECT에서 보여주는 컬럼수와 GROUP BY로 묶어주는 컬럼수를 같게 해야한다.
+date경우도 간단하게 x between a and b 이렇게 못하고 저런식으로 값을 바꿔준 뒤 between을 걸어주어야한다.
+
+   		SELECT
+   			A_col, B_col, count(A_col) as cnt, C_col
+   		FROM
+   			HACS_TABLE
+   		WHERE
+   			B_col = #{B_col}
+			and HACSdate between to_date(#{fromDate}, 'YYYY-MM-DD') AND to_date(#{toDate}, 'YYYY-MM-DD')
+   		GROUP BY A_col, B_col, C_col
+
+```
+
+**COUNT**
+MySQL
+```
+
+```
+postgreSQL
+```
+
+```
+
 ------------------------
 ## ⚠⚠ 화면단위 css 및 html 수정 tip
 평소에 웹을 만들면서 f12를 눌러 개발자 창에서 콘솔창만 보거나 했는데 사실 여기엔 엄청난 장점들이 많다 특히 
