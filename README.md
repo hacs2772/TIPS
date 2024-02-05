@@ -367,6 +367,75 @@ adminManager.js   331
 
 listUtils.js    855getTitle과  885getKey를 받아서 excelDownloadCallServiceFunc(블라블라~~~~, 여기에 넣는다!)
 
+## 24.02.05 월
+**excelDownloadDataListFunc 사용법**
+excelUtils.js를 참고하는게 편할거다
+```
+// jsp에서 사용법
+
+var key_arr = $("#popupGrid").getKey();
+var title_arr = $("#popupGrid").getTitle();
+var dataList = $("#popupGrid").get(0)["popupGrid"]; //popupGrid는 그리드 이름이다
+
+// 여기서 조인으로 합치는 이유는 js에서 같은형식으로 넣어주기위함이다
+$(this).excelDownloadDataListFunc(key_arr.join(","), title_arr.join(","), dataList, "직급상세", "직급상세");
+```
+
+**excelDownloadCallServiceFunc 사용법**
+excelUtils.js를 참고하는게 편할거다
+```
+// jsp에서 사용법
+
+// 막대차트에서 왔는지 리스트에서 왔는지 구분해주기 위해 (key값이 다름)
+var part = "${part}";
+// 어떤 view에서 왔는지
+var sourcePage = "${sourcePage}";
+
+var callService = "";
+
+var key_arr = $("#popupGrid").getKey();
+var title_arr = $("#popupGrid").getTitle();
+var dataList = $("#popupGrid").get(0)["popupGrid"];
+
+var fromDate = "${fromDate}";
+var toDate = "${toDate}";
+var jikgubnm = "${jikgubnm}";
+
+// 파라미터
+var param = {};
+
+param.fromDate = fromDate;
+param.toDate = toDate;
+param.jikgubnm = jikgubnm;
+
+if (sourcePage == "big7") {
+	if (part == "list") {
+		var category_id = "${category_id}";
+		callService = "Big7Service$big7DetailGrid";
+		param.category_id = category_id;
+		console.log("빅,하단스트");
+	}else if (part == "chartB") {
+		var category = "${categoryLabel}";
+		callService = "Big7Service$big7DetailList";
+		param.category = category;
+		console.log("빅,상단차트");
+	}
+}else if (sourcePage == "trend") {
+	if (part == "list") {
+		var category_id = "${category_id}";
+		callService = "TrendService$trendDetailGrid";
+		param.category_id = category_id;
+		console.log("트랜드,하단스트");
+	}else if (part == "chartB") {
+		var category = "${categoryLabel}";
+		callService = "TrendService$trendDetailList";
+		param.category = category;
+		console.log("트랜드,상단차트");
+	}
+}
+$(this).excelDownloadCallServiceFunc(callService, key_arr, title_arr, param, "직급 상세", "직급 상세", 60000);
+```
+	
 
 ------------------------
 ## ⚠⚠ #뷰에서 서비스로 값 가져오기, #view에서 받은 배열 -> 쿼리에서 가공하는법 (쉽게말해 Array -> 스트링(map)  -> 리스트 스트링(List<String>) -> foreach로 하나하나 넣어주기
