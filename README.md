@@ -2518,6 +2518,44 @@ input박스는 val을 해서 나오게 할 수 있고
 
 
 
+------------------------
+## ⚠⚠ json오류!!!!! 중요하고 어렵다
+
+ajax에서 
+saveDataListStr: JSON.stringify(saveDataList),
+이런식으로 넘긴 데이터안에는
+
+{saveDataListStr=[{"key":"machine_name","seqno":1},{"key":"start_time","seqno":2},{"key":"end_time","seqno":3},{"key":"action","seqno":4}], menu_code=3101, grid_name=grid1, type=fw}
+이런식으로 데이터가 담겨있을때
+저 saveDataListStr을 가져오기 위해선(java로)
+
+List<Map<String, Object>> saveDataList = p.getRequestObjectMapper("saveDataListStr", List.class);
+이런식으로 사용한다
+
+그리고
+	    for (Map<String, Object> item : saveDataList) {
+	        // 각 item의 key와 seqno를 param에 설정
+	        param.put("key", item.get("key"));
+	        param.put("seqno", item.get("seqno"));
+
+	        // 데이터베이스 업데이트 호출
+	        sqlSession.getMapper(LogSearchDao.class).columnSet(param);
+	        
+	    }
+이렇게 for문을 돌려서 업데이트를 친다
+
+그리하여 쿼리는
+    UPDATE hive_columns
+    SET seqno = #{seqno}
+    WHERE table_name = #{type}
+      AND column_name = #{key}
+      이렇게 간단하다
+다만
+수많은 업데이트칠때 오류가나면 도중에 끊기는게 아니라 다시 롤백해서 한번에 일을 처리해야하기에
+반드시!
+java메소드 앞에 @Transactional 을 붙여 줘야한다!!!!!!!!!!!!
+매우 중요하다
+
 
 
 
